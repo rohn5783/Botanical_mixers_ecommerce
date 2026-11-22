@@ -1,0 +1,607 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.pdp {
+  width: 100%;
+  padding-bottom: $space-16;
+}
+
+.container {
+  @include container;
+}
+
+.breadcrumbBar {
+  padding: $space-4 0;
+  border-bottom: 1px solid $color-border-subtle;
+  background-color: $color-bg-secondary;
+  margin-bottom: $space-8;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+
+  a:hover {
+    color: $color-forest-primary;
+  }
+
+  .currentCrumb {
+    color: $color-forest-primary;
+    font-weight: 600;
+  }
+}
+
+.productShowcase {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-10;
+  margin-bottom: $space-12;
+
+  @include desktop {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.galleryCol {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  .mainImageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    border: 1px solid $color-border-subtle;
+    box-shadow: $shadow-md;
+
+    .mainImage {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .galleryBadge {
+      position: absolute;
+      top: $space-4;
+      left: $space-4;
+      background-color: rgba(250, 247, 242, 0.95);
+      border: 1px solid $color-border-subtle;
+      padding: 3px 10px;
+      border-radius: $radius-xs;
+      font-size: 0.7rem;
+      font-family: $font-family-mono;
+      font-weight: 600;
+      color: $color-forest-primary;
+    }
+  }
+
+  .thumbnailsRow {
+    display: flex;
+    gap: $space-3;
+
+    .thumbBtn {
+      width: 80px;
+      height: 80px;
+      border-radius: $radius-md;
+      border: 1px solid $color-border-subtle;
+      overflow: hidden;
+      background-color: #FFFFFF;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &.activeThumb {
+        border: 2px solid $color-gold-primary;
+      }
+    }
+  }
+}
+
+.detailsCol {
+  display: flex;
+  flex-direction: column;
+
+  .originTag {
+    font-size: 0.75rem;
+    font-family: $font-family-mono;
+    color: $color-gold-dark;
+    margin-bottom: $space-2;
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+
+    .bullet {
+      color: $color-border-medium;
+    }
+  }
+
+  .productTitle {
+    font-size: 2.25rem;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-3;
+    line-height: 1.25;
+  }
+
+  .ratingRow {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    margin-bottom: $space-4;
+
+    .starIcons {
+      display: flex;
+      gap: 2px;
+    }
+
+    .ratingScore {
+      font-weight: 700;
+      font-size: $font-size-sm;
+    }
+
+    .reviewCount {
+      font-size: $font-size-xs;
+      color: $color-text-tertiary;
+    }
+  }
+
+  .priceRow {
+    display: flex;
+    align-items: baseline;
+    gap: $space-3;
+    margin-bottom: $space-6;
+    padding-bottom: $space-4;
+    border-bottom: 1px solid $color-border-subtle;
+
+    .priceCurrent {
+      font-size: 2rem;
+      font-weight: 700;
+      color: $color-forest-primary;
+    }
+
+    .priceCompare {
+      font-size: $font-size-base;
+      color: $color-text-tertiary;
+      text-decoration: line-through;
+    }
+
+    .taxPill {
+      font-size: 0.7rem;
+      color: $color-success;
+      background-color: #EBF7EE;
+      padding: 2px 8px;
+      border-radius: $radius-xs;
+      font-weight: 600;
+    }
+  }
+
+  .leadDescription {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    line-height: 1.7;
+    margin-bottom: $space-6;
+  }
+}
+
+.variantSection {
+  margin-bottom: $space-6;
+
+  .sectionHeaderLine {
+    @include flex-between;
+    margin-bottom: $space-2;
+
+    .sectionLabel {
+      font-size: $font-size-xs;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .selectedVariantName {
+      font-size: $font-size-xs;
+      color: $color-gold-dark;
+      font-weight: 600;
+    }
+  }
+
+  .variantPills {
+    display: flex;
+    gap: $space-3;
+
+    .variantBtn {
+      flex: 1;
+      padding: $space-3;
+      border: 1px solid $color-border-medium;
+      border-radius: $radius-md;
+      background-color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+
+      .vName {
+        font-family: $font-family-mono;
+        font-size: $font-size-sm;
+        font-weight: 600;
+        color: $color-forest-primary;
+      }
+
+      .vPrice {
+        font-size: $font-size-xs;
+        color: $color-text-secondary;
+      }
+
+      &.activeVariantBtn {
+        border: 2px solid $color-forest-primary;
+        background-color: $color-bg-secondary;
+      }
+    }
+  }
+}
+
+.flavorSensoryBar {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: $space-4;
+  margin-bottom: $space-6;
+
+  h4 {
+    font-size: $font-size-xs;
+    font-family: $font-family-sans;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $color-forest-primary;
+    margin-bottom: $space-3;
+  }
+
+  .flavorGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-3;
+    margin-bottom: $space-3;
+
+    @include tablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .flavorMetric {
+    .flavorMetricHeader {
+      @include flex-between;
+      font-size: 0.65rem;
+      font-family: $font-family-mono;
+      color: $color-text-secondary;
+      margin-bottom: 2px;
+    }
+
+    .meterTrack {
+      width: 100%;
+      height: 4px;
+      background-color: $color-bg-secondary;
+      border-radius: $radius-full;
+      overflow: hidden;
+
+      .meterFill {
+        height: 100%;
+        background-color: $color-gold-primary;
+      }
+    }
+  }
+
+  .flavorDesc {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+    font-style: italic;
+    border-top: 1px solid $color-border-subtle;
+    padding-top: $space-2;
+  }
+}
+
+.purchaseActions {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  margin-bottom: $space-6;
+  flex-wrap: wrap;
+
+  .quantityWrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid $color-border-medium;
+    border-radius: $radius-md;
+    background-color: #FFFFFF;
+
+    .qtyStepper {
+      width: 40px;
+      height: 44px;
+      @include flex-center;
+      font-size: $font-size-base;
+      font-weight: 600;
+    }
+
+    .qtyDisplay {
+      font-family: $font-family-mono;
+      font-size: $font-size-sm;
+      padding: 0 $space-3;
+      font-weight: 600;
+    }
+  }
+
+  .addToCartBtn {
+    flex: 2;
+    min-width: 180px;
+    height: 44px;
+    background-color: $color-forest-primary;
+    color: #FFFFFF;
+    border-radius: $radius-md;
+    font-weight: 600;
+    font-size: $font-size-sm;
+    @include flex-center;
+    gap: $space-2;
+
+    &:hover {
+      background-color: $color-forest-light;
+    }
+  }
+
+  .buyNowBtn {
+    flex: 1;
+    min-width: 120px;
+    height: 44px;
+    background-color: $color-gold-primary;
+    color: #FFFFFF;
+    border-radius: $radius-md;
+    font-weight: 600;
+    font-size: $font-size-sm;
+    @include flex-center;
+
+    &:hover {
+      background-color: $color-gold-dark;
+    }
+  }
+
+  .iconActionBtn {
+    width: 44px;
+    height: 44px;
+    border-radius: $radius-md;
+    border: 1px solid $color-border-medium;
+    background-color: #FFFFFF;
+    @include flex-center;
+    color: $color-text-secondary;
+
+    &:hover {
+      color: $color-forest-primary;
+      border-color: $color-forest-primary;
+    }
+
+    &.activeWishlist {
+      color: $color-kokum-primary;
+    }
+  }
+}
+
+.guaranteeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-3;
+  padding-top: $space-4;
+  border-top: 1px solid $color-border-subtle;
+
+  .gItem {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    font-size: 0.7rem;
+    color: $color-text-secondary;
+
+    svg {
+      color: $color-gold-primary;
+      flex-shrink: 0;
+    }
+  }
+}
+
+// Tabs Section
+.tabsSection {
+  margin: $space-12 0;
+}
+
+.tabsHeader {
+  display: flex;
+  gap: $space-2;
+  border-bottom: 1px solid $color-border-medium;
+  overflow-x: auto;
+  padding-bottom: 2px;
+
+  .tabBtn {
+    padding: $space-3 $space-5;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-text-secondary;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+
+    &.activeTabBtn {
+      color: $color-forest-primary;
+      border-bottom-color: $color-forest-primary;
+    }
+  }
+}
+
+.tabContentPanel {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-top: none;
+  border-radius: 0 0 $radius-md $radius-md;
+  padding: $space-8;
+}
+
+.tabBody {
+  h3 {
+    font-size: $font-size-lg;
+    color: $color-forest-primary;
+    margin-bottom: $space-4;
+  }
+
+  .bulletList {
+    padding-left: $space-5;
+    margin-bottom: $space-6;
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    li {
+      font-size: $font-size-sm;
+      color: $color-text-secondary;
+    }
+  }
+
+  .infoCallout {
+    background-color: $color-bg-secondary;
+    padding: $space-4;
+    border-radius: $radius-sm;
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+  }
+}
+
+.nutritionTable {
+  width: 100%;
+  max-width: 500px;
+  border-collapse: collapse;
+  font-size: $font-size-sm;
+
+  td {
+    padding: $space-2 $space-4;
+    border-bottom: 1px solid $color-border-subtle;
+
+    &:last-child {
+      text-align: right;
+      font-family: $font-family-mono;
+      font-weight: 600;
+      color: $color-forest-primary;
+    }
+  }
+}
+
+.prepSteps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-4;
+  margin-top: $space-4;
+
+  @include tablet {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pStep {
+    display: flex;
+    gap: $space-3;
+
+    span {
+      width: 28px;
+      height: 28px;
+      border-radius: $radius-full;
+      background-color: $color-forest-primary;
+      color: #FFFFFF;
+      @include flex-center;
+      font-weight: 700;
+      font-size: $font-size-xs;
+      flex-shrink: 0;
+    }
+
+    p {
+      font-size: $font-size-xs;
+      color: $color-text-secondary;
+      line-height: 1.5;
+    }
+  }
+}
+
+.reviewItem {
+  background-color: $color-bg-secondary;
+  padding: $space-5;
+  border-radius: $radius-md;
+
+  .reviewStars {
+    color: $color-gold-primary;
+    font-size: $font-size-sm;
+    margin-bottom: $space-1;
+  }
+
+  h4 {
+    font-size: $font-size-base;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    font-style: italic;
+    margin-bottom: $space-3;
+  }
+
+  .reviewer {
+    font-size: 0.75rem;
+    color: $color-text-tertiary;
+    font-family: $font-family-mono;
+  }
+}
+
+// Related Section
+.relatedSection {
+  margin-top: $space-16;
+
+  .relatedTitle {
+    font-size: $font-size-2xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-8;
+  }
+
+  .relatedGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-6;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+.loadingContainer, .errorContainer {
+  min-height: 50vh;
+  @include flex-center;
+  flex-direction: column;
+  text-align: center;
+  gap: $space-4;
+
+  .returnBtn {
+    background-color: $color-forest-primary;
+    color: #FFFFFF;
+    padding: $space-3 $space-6;
+    border-radius: $radius-md;
+    font-weight: 600;
+    font-size: $font-size-sm;
+  }
+}

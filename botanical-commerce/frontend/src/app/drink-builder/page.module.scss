@@ -1,0 +1,44 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.drinkBuilderPage {
+  width: 100%;
+  padding-bottom: $space-20;
+}
+
+.container {
+  @include container;
+}
+
+.header {
+  background-color: $color-bg-secondary;
+  border-bottom: 1px solid $color-border-subtle;
+  padding: $space-12 0;
+  text-align: center;
+  margin-bottom: $space-8;
+
+  .sub {
+    font-family: $font-family-mono;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: $color-gold-dark;
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: $space-2;
+  }
+
+  .title {
+    font-size: $font-size-3xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+  }
+
+  .desc {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}

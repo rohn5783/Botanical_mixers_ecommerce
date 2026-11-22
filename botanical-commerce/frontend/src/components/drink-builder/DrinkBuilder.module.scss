@@ -1,0 +1,522 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.builderContainer {
+  width: 100%;
+}
+
+.wizardSteps {
+  display: flex;
+  gap: $space-2;
+  overflow-x: auto;
+  padding-bottom: $space-4;
+  margin-bottom: $space-8;
+  border-bottom: 1px solid $color-border-subtle;
+
+  .stepPill {
+    padding: $space-2 $space-4;
+    border-radius: $radius-full;
+    background-color: $color-bg-secondary;
+    border: 1px solid $color-border-subtle;
+    font-size: $font-size-xs;
+    font-family: $font-family-mono;
+    color: $color-text-secondary;
+    white-space: nowrap;
+
+    &.activeStep {
+      background-color: $color-forest-primary;
+      color: #FFFFFF;
+      border-color: $color-forest-primary;
+    }
+
+    &.completedStep {
+      border-color: $color-gold-primary;
+      color: $color-forest-primary;
+    }
+  }
+}
+
+.stepContent {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stepTitleRow {
+  margin-bottom: $space-6;
+
+  h3 {
+    font-size: $font-size-2xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-1;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+  }
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-4;
+  margin-bottom: $space-8;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.productSelectCard {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  overflow: hidden;
+  cursor: pointer;
+  @include transition-default;
+
+  &:hover {
+    border-color: $color-gold-primary;
+    transform: translateY(-2px);
+  }
+
+  &.selectedCard {
+    border: 2px solid $color-gold-primary;
+    box-shadow: $shadow-md;
+  }
+
+  .cardImageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: $color-bg-surface-alt;
+    overflow: hidden;
+
+    .cardImg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .checkBadge {
+      position: absolute;
+      top: $space-2;
+      right: $space-2;
+      width: 28px;
+      height: 28px;
+      border-radius: $radius-full;
+      background-color: $color-gold-primary;
+      color: #FFFFFF;
+      @include flex-center;
+    }
+  }
+
+  .cardText {
+    padding: $space-4;
+
+    h4 {
+      font-size: $font-size-base;
+      font-family: $font-family-display;
+      color: $color-forest-primary;
+      margin-bottom: $space-1;
+    }
+
+    .ratioPill {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-family: $font-family-mono;
+      color: $color-gold-dark;
+      margin-bottom: $space-2;
+    }
+
+    .flavorSummary {
+      font-size: $font-size-xs;
+      color: $color-text-secondary;
+      line-height: 1.4;
+      @include line-clamp(2);
+    }
+  }
+}
+
+.basesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-4;
+  margin-bottom: $space-8;
+
+  @include tablet {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.baseSelectCard {
+  position: relative;
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: $space-6;
+  cursor: pointer;
+  @include transition-default;
+
+  &:hover {
+    border-color: $color-gold-primary;
+    transform: translateY(-2px);
+  }
+
+  &.selectedCard {
+    border: 2px solid $color-gold-primary;
+    box-shadow: $shadow-md;
+  }
+
+  .baseIcon {
+    width: 52px;
+    height: 52px;
+    border-radius: $radius-md;
+    background-color: $color-bg-secondary;
+    color: $color-gold-primary;
+    @include flex-center;
+    margin-bottom: $space-4;
+  }
+
+  h4 {
+    font-size: $font-size-md;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+  }
+
+  .baseDesc {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+    line-height: 1.5;
+    margin-bottom: $space-4;
+  }
+
+  .recTag {
+    font-size: 0.7rem;
+    font-family: $font-family-mono;
+    color: $color-gold-dark;
+  }
+
+  .checkBadge {
+    position: absolute;
+    top: $space-4;
+    right: $space-4;
+    width: 28px;
+    height: 28px;
+    border-radius: $radius-full;
+    background-color: $color-gold-primary;
+    color: #FFFFFF;
+    @include flex-center;
+  }
+}
+
+.accentsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-3;
+  margin-bottom: $space-8;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.accentCard {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: $space-4;
+  display: flex;
+  align-items: flex-start;
+  gap: $space-3;
+  cursor: pointer;
+  @include transition-default;
+
+  &:hover {
+    border-color: $color-gold-primary;
+  }
+
+  &.selectedCard {
+    border: 2px solid $color-gold-primary;
+    background-color: #FFFDF9;
+
+    .accentCheckbox {
+      background-color: $color-gold-primary;
+      color: #FFFFFF;
+      border-color: $color-gold-primary;
+    }
+  }
+
+  .accentCheckbox {
+    width: 24px;
+    height: 24px;
+    border-radius: $radius-xs;
+    border: 1px solid $color-border-medium;
+    @include flex-center;
+    color: $color-text-secondary;
+    flex-shrink: 0;
+  }
+
+  .accentText {
+    h4 {
+      font-size: $font-size-sm;
+      font-family: $font-family-sans;
+      font-weight: 600;
+      color: $color-forest-primary;
+      margin-bottom: 2px;
+    }
+
+    p {
+      font-size: 0.75rem;
+      color: $color-text-secondary;
+    }
+  }
+}
+
+.stepActions {
+  @include flex-between;
+  border-top: 1px solid $color-border-subtle;
+  padding-top: $space-6;
+}
+
+.primaryNextBtn {
+  background-color: $color-forest-primary;
+  color: #FFFFFF;
+  padding: $space-3 $space-6;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  margin-left: auto;
+
+  &:hover {
+    background-color: $color-forest-light;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+.secondaryBtn {
+  background-color: transparent;
+  color: $color-forest-primary;
+  padding: $space-3 $space-5;
+  border: 1px solid $color-border-medium;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  font-weight: 600;
+
+  &:hover {
+    background-color: $color-bg-secondary;
+  }
+}
+
+.formulaOutput {
+  animation: fadeIn 0.4s ease;
+}
+
+.recipeCardContainer {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-lg;
+  padding: $space-8;
+  box-shadow: $shadow-lift;
+}
+
+.formulaHeader {
+  text-align: center;
+  margin-bottom: $space-8;
+  border-bottom: 1px solid $color-border-subtle;
+  padding-bottom: $space-6;
+
+  .signatureBadge {
+    display: inline-block;
+    font-family: $font-family-mono;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: $color-gold-dark;
+    background-color: $color-bg-secondary;
+    padding: 3px 12px;
+    border-radius: $radius-full;
+    margin-bottom: $space-2;
+    text-transform: uppercase;
+  }
+
+  .formulaTitle {
+    font-size: $font-size-3xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+  }
+
+  .formulaSubtitle {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+  }
+}
+
+.formulaBodyGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-6;
+  margin-bottom: $space-8;
+
+  @include desktop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.proportionsCard, .methodCard {
+  background-color: $color-bg-secondary;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: $space-6;
+
+  h4 {
+    font-size: $font-size-base;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-4;
+    border-bottom: 1px solid $color-border-subtle;
+    padding-bottom: $space-2;
+  }
+}
+
+.ingredientsSpecList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+
+  li {
+    @include flex-between;
+    font-size: $font-size-sm;
+
+    .ingName {
+      color: $color-text-primary;
+      font-weight: 500;
+    }
+
+    .ingAmount {
+      font-family: $font-family-mono;
+      font-weight: 700;
+      color: $color-gold-dark;
+    }
+  }
+}
+
+.methodList {
+  padding-left: $space-4;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+
+  li {
+    font-size: $font-size-xs;
+    line-height: 1.6;
+    color: $color-text-secondary;
+
+    strong {
+      color: $color-forest-primary;
+    }
+  }
+}
+
+.conversionBanner {
+  background-color: $color-bg-dark;
+  color: #FFFFFF;
+  border-radius: $radius-md;
+  padding: $space-6;
+  @include flex-between;
+  flex-direction: column;
+  gap: $space-4;
+
+  @include tablet {
+    flex-direction: row;
+  }
+
+  .bannerInfo {
+    display: flex;
+    flex-direction: column;
+
+    .bannerTag {
+      font-family: $font-family-mono;
+      font-size: 0.65rem;
+      color: $color-gold-primary;
+      text-transform: uppercase;
+    }
+
+    .bannerProductName {
+      font-size: $font-size-lg;
+      font-family: $font-family-display;
+      color: #FFFFFF;
+    }
+
+    .bannerPrice {
+      font-family: $font-family-mono;
+      font-size: $font-size-xs;
+      color: $color-text-muted-light;
+    }
+  }
+
+  .bannerActions {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+
+    .addConcentrateBtn {
+      background-color: $color-gold-primary;
+      color: $color-bg-dark;
+      padding: $space-3 $space-6;
+      border-radius: $radius-md;
+      font-weight: 700;
+      font-size: $font-size-sm;
+      display: inline-flex;
+      align-items: center;
+      gap: $space-2;
+
+      &:hover {
+        background-color: $color-gold-light;
+      }
+
+      &.addedState {
+        background-color: $color-success;
+        color: #FFFFFF;
+      }
+    }
+
+    .resetBtn {
+      background-color: transparent;
+      color: $color-text-muted-light;
+      border: 1px solid $color-border-dark;
+      padding: $space-3 $space-4;
+      border-radius: $radius-md;
+      font-size: $font-size-xs;
+      display: inline-flex;
+      align-items: center;
+      gap: $space-1;
+
+      &:hover {
+        color: #FFFFFF;
+        border-color: #FFFFFF;
+      }
+    }
+  }
+}

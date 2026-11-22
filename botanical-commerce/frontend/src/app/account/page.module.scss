@@ -1,0 +1,408 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.accountPage {
+  width: 100%;
+  padding-bottom: $space-20;
+}
+
+.container {
+  @include container;
+}
+
+.header {
+  padding: $space-8 0;
+  border-bottom: 1px solid $color-border-subtle;
+  margin-bottom: $space-8;
+  @include flex-between;
+  flex-wrap: wrap;
+  gap: $space-4;
+
+  .userMeta {
+    display: flex;
+    align-items: center;
+    gap: $space-4;
+
+    .avatarCircle {
+      width: 56px;
+      height: 56px;
+      border-radius: $radius-full;
+      background-color: $color-forest-primary;
+      color: #FFFFFF;
+      font-size: $font-size-xl;
+      font-family: $font-family-display;
+      @include flex-center;
+    }
+
+    h1 {
+      font-size: $font-size-2xl;
+      font-family: $font-family-display;
+      color: $color-forest-primary;
+    }
+
+    p {
+      font-size: $font-size-xs;
+      color: $color-text-secondary;
+    }
+  }
+
+  .headerActions {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+
+    .adminPortalBtn {
+      background-color: $color-gold-primary;
+      color: #FFFFFF;
+      font-size: $font-size-xs;
+      font-weight: 600;
+      padding: $space-2 $space-4;
+      border-radius: $radius-md;
+
+      &:hover {
+        background-color: $color-gold-dark;
+      }
+    }
+
+    .logoutBtn {
+      display: inline-flex;
+      align-items: center;
+      gap: $space-2;
+      border: 1px solid $color-border-medium;
+      padding: $space-2 $space-3;
+      border-radius: $radius-md;
+      font-size: $font-size-xs;
+      color: $color-text-secondary;
+
+      &:hover {
+        color: $color-error;
+        border-color: $color-error;
+      }
+    }
+  }
+}
+
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-8;
+
+  @include desktop {
+    grid-template-columns: 240px 1fr;
+  }
+}
+
+.navSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+
+  .navItem {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    padding: $space-3 $space-4;
+    border-radius: $radius-md;
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    text-align: left;
+
+    &:hover {
+      background-color: $color-bg-secondary;
+      color: $color-forest-primary;
+    }
+
+    &.activeNavItem {
+      background-color: $color-forest-primary;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  }
+}
+
+.contentPane {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: $space-8;
+  box-shadow: $shadow-sm;
+}
+
+.tabSection {
+  h2 {
+    font-size: $font-size-xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-6;
+    border-bottom: 1px solid $color-border-subtle;
+    padding-bottom: $space-3;
+  }
+}
+
+.emptyBox {
+  text-align: center;
+  padding: $space-12 0;
+
+  .emptyIcon {
+    color: $color-text-tertiary;
+    margin-bottom: $space-3;
+  }
+
+  h3 {
+    font-size: $font-size-base;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+  }
+
+  p {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+    margin-bottom: $space-4;
+  }
+
+  .shopBtn {
+    background-color: $color-forest-primary;
+    color: #FFFFFF;
+    padding: $space-2 $space-4;
+    border-radius: $radius-md;
+    font-size: $font-size-xs;
+    font-weight: 600;
+  }
+}
+
+.ordersList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.orderCard {
+  background-color: $color-bg-secondary;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: $space-4 $space-6;
+
+  .orderCardHeader {
+    @include flex-between;
+    margin-bottom: $space-3;
+    padding-bottom: $space-2;
+    border-bottom: 1px solid $color-border-subtle;
+
+    strong {
+      font-size: $font-size-sm;
+      font-family: $font-family-mono;
+    }
+
+    .orderDate {
+      display: block;
+      font-size: 0.7rem;
+      color: $color-text-tertiary;
+      margin-top: 2px;
+    }
+  }
+
+  .statusGroup {
+    display: flex;
+    gap: $space-2;
+
+    .statusBadge {
+      font-family: $font-family-mono;
+      font-size: 0.65rem;
+      padding: 2px 6px;
+      border-radius: $radius-xs;
+      background-color: #FFFFFF;
+      font-weight: 700;
+
+      &.CONFIRMED, &.PAID { color: $color-success; }
+      &.PENDING { color: $color-warning; }
+      &.CANCELLED { color: $color-error; }
+    }
+
+    .paymentBadge {
+      font-family: $font-family-mono;
+      font-size: 0.65rem;
+      padding: 2px 6px;
+      border-radius: $radius-xs;
+      background-color: #FFFFFF;
+    }
+  }
+
+  .orderItemsPreview {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+    margin-bottom: $space-3;
+
+    .orderItemRow {
+      @include flex-between;
+      font-size: $font-size-xs;
+      color: $color-text-secondary;
+    }
+  }
+
+  .orderCardFooter {
+    @include flex-between;
+    border-top: 1px solid $color-border-subtle;
+    padding-top: $space-3;
+    flex-wrap: wrap;
+    gap: $space-2;
+
+    .totalBlock {
+      font-size: $font-size-xs;
+
+      strong {
+        font-size: $font-size-sm;
+        color: $color-forest-primary;
+        margin-left: $space-2;
+      }
+    }
+
+    .orderActions {
+      display: flex;
+      align-items: center;
+      gap: $space-3;
+
+      .trackingInfo {
+        font-family: $font-family-mono;
+        font-size: 0.7rem;
+        color: $color-gold-dark;
+      }
+
+      .cancelBtn {
+        font-size: 0.7rem;
+        color: $color-error;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.profileDetailsCard {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-4;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .profileField {
+    background-color: $color-bg-secondary;
+    padding: $space-3 $space-4;
+    border-radius: $radius-sm;
+    display: flex;
+    flex-direction: column;
+
+    span {
+      font-size: 0.7rem;
+      color: $color-text-tertiary;
+      text-transform: uppercase;
+      font-family: $font-family-mono;
+    }
+
+    strong {
+      font-size: $font-size-sm;
+      color: $color-forest-primary;
+      margin-top: 2px;
+    }
+  }
+}
+
+.addressCard {
+  background-color: $color-bg-secondary;
+  border-radius: $radius-sm;
+  padding: $space-6;
+  max-width: 440px;
+
+  h4 {
+    font-size: $font-size-sm;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+  }
+
+  p {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+    line-height: 1.5;
+  }
+
+  .defaultPill {
+    display: inline-block;
+    font-family: $font-family-mono;
+    font-size: 0.65rem;
+    color: $color-gold-dark;
+    background-color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: $radius-xs;
+    margin-top: $space-3;
+  }
+}
+
+.wishlistGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-4;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.wishCard {
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  overflow: hidden;
+  display: flex;
+  gap: $space-3;
+  padding: $space-3;
+
+  .wishImg {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: $radius-xs;
+  }
+
+  .wishInfo {
+    flex: 1;
+
+    h4 {
+      font-size: $font-size-xs;
+      color: $color-forest-primary;
+      margin-bottom: 2px;
+    }
+
+    .wishPrice {
+      font-size: $font-size-xs;
+      font-weight: 700;
+      color: $color-forest-primary;
+      display: block;
+      margin-bottom: $space-2;
+    }
+
+    .wishActions {
+      display: flex;
+      gap: $space-2;
+
+      .addCartBtn {
+        background-color: $color-forest-primary;
+        color: #FFFFFF;
+        font-size: 0.65rem;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: $radius-xs;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .removeWishBtn {
+        font-size: 0.65rem;
+        color: $color-error;
+      }
+    }
+  }
+}

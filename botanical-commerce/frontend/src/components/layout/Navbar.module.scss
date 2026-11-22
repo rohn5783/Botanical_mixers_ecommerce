@@ -1,0 +1,245 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: $color-bg-primary;
+  border-bottom: 1px solid $color-border-subtle;
+  @include transition-default;
+
+  &.scrolled {
+    box-shadow: $shadow-md;
+  }
+}
+
+.announcement {
+  background-color: $color-bg-dark;
+  color: $color-text-light;
+  font-size: $font-size-xs;
+  font-family: $font-family-mono;
+  letter-spacing: 0.05em;
+  padding: $space-2 $space-4;
+  text-align: center;
+  overflow: hidden;
+
+  .announcementContent {
+    @include flex-center;
+    gap: $space-3;
+    flex-wrap: wrap;
+
+    .separator {
+      color: $color-gold-primary;
+    }
+
+    .announcementLink {
+      color: $color-gold-light;
+      font-weight: 500;
+      text-decoration: underline;
+
+      &:hover {
+        color: #FFFFFF;
+      }
+    }
+  }
+}
+
+.navbar {
+  background-color: $color-bg-primary;
+  padding: $space-3 0;
+
+  @include desktop {
+    padding: $space-4 0;
+  }
+}
+
+.navContainer {
+  @include container;
+  @include flex-between;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .brandTitle {
+    font-family: $font-family-display;
+    font-size: $font-size-2xl;
+    font-weight: 700;
+    color: $color-forest-primary;
+    letter-spacing: 0.12em;
+    line-height: 1;
+  }
+
+  .brandSubtitle {
+    font-family: $font-family-mono;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: $color-gold-primary;
+    margin-top: 2px;
+  }
+}
+
+.desktopLinks {
+  display: none;
+
+  @include desktop {
+    display: flex;
+    align-items: center;
+    gap: $space-6;
+  }
+}
+
+.navLink {
+  position: relative;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: $color-text-secondary;
+  letter-spacing: 0.02em;
+  padding: $space-2 0;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+
+  &:hover {
+    color: $color-forest-primary;
+  }
+
+  &.activeLink {
+    color: $color-forest-primary;
+    font-weight: 600;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: $color-gold-primary;
+    }
+  }
+}
+
+.navBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background-color: $color-gold-primary;
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  font-family: $font-family-mono;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: $radius-full;
+  text-transform: uppercase;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+}
+
+.actionBtn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-full;
+  @include flex-center;
+  color: $color-forest-primary;
+  border: 1px solid transparent;
+  background: transparent;
+
+  &:hover {
+    background-color: $color-bg-secondary;
+    border-color: $color-border-subtle;
+  }
+}
+
+.cartBtn {
+  background-color: $color-forest-primary;
+  color: $color-bg-primary;
+
+  &:hover {
+    background-color: $color-forest-light;
+    color: #FFFFFF;
+  }
+}
+
+.badgeCount {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: $color-kokum-primary;
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: $radius-full;
+  @include flex-center;
+  border: 2px solid $color-bg-primary;
+}
+
+.adminDot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: $radius-full;
+  background-color: $color-gold-primary;
+}
+
+.mobileToggle {
+  display: block;
+  color: $color-forest-primary;
+
+  @include desktop {
+    display: none;
+  }
+}
+
+.mobileNav {
+  background-color: $color-bg-primary;
+  border-top: 1px solid $color-border-subtle;
+  padding: $space-4;
+
+  @include desktop {
+    display: none;
+  }
+}
+
+.mobileNavLinks {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.mobileNavLink {
+  font-size: $font-size-md;
+  color: $color-forest-primary;
+  padding: $space-2 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &.activeMobileLink {
+    color: $color-gold-dark;
+    font-weight: 600;
+  }
+
+  &.adminLink {
+    color: $color-gold-dark;
+    font-weight: 600;
+  }
+}
+
+.mobileDivider {
+  height: 1px;
+  background-color: $color-border-subtle;
+  margin: $space-2 0;
+}

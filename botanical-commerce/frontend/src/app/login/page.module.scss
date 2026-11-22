@@ -1,0 +1,177 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.authPage {
+  min-height: 75vh;
+  @include flex-center;
+  padding: $space-16 0;
+  background-color: $color-bg-primary;
+}
+
+.container {
+  @include container;
+}
+
+.authCard {
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-lg;
+  padding: $space-10 $space-8;
+  box-shadow: $shadow-lift;
+}
+
+.cardHeader {
+  text-align: center;
+  margin-bottom: $space-6;
+
+  .sub {
+    font-family: $font-family-mono;
+    font-size: 0.7rem;
+    color: $color-gold-dark;
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: $space-2;
+  }
+
+  h1 {
+    font-size: $font-size-2xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+  }
+
+  p {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+  }
+}
+
+.demoCredentialsBox {
+  background-color: $color-bg-secondary;
+  border: 1px dashed $color-gold-primary;
+  border-radius: $radius-sm;
+  padding: $space-3 $space-4;
+  font-size: 0.75rem;
+  margin-bottom: $space-6;
+
+  strong {
+    display: block;
+    color: $color-forest-primary;
+    margin-bottom: 2px;
+  }
+
+  code {
+    font-family: $font-family-mono;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1px 4px;
+    border-radius: 2px;
+  }
+}
+
+.errorAlert {
+  background-color: #FDF2F2;
+  border: 1px solid $color-error;
+  color: $color-error;
+  padding: $space-3;
+  border-radius: $radius-sm;
+  font-size: $font-size-xs;
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  margin-bottom: $space-4;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+
+  label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $color-forest-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .labelRow {
+    @include flex-between;
+
+    .forgotLink {
+      font-size: 0.7rem;
+      color: $color-gold-dark;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .inputIcon {
+      position: absolute;
+      left: $space-3;
+      color: $color-text-tertiary;
+    }
+
+    input {
+      width: 100%;
+      padding-left: $space-8;
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+.submitBtn {
+  width: 100%;
+  background-color: $color-forest-primary;
+  color: #FFFFFF;
+  padding: $space-3 $space-4;
+  border-radius: $radius-md;
+  font-weight: 700;
+  font-size: $font-size-sm;
+  @include flex-center;
+  gap: $space-2;
+  margin-top: $space-2;
+
+  &:hover {
+    background-color: $color-forest-light;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+.cardFooter {
+  text-align: center;
+  margin-top: $space-6;
+  border-top: 1px solid $color-border-subtle;
+  padding-top: $space-4;
+
+  p {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+
+    .switchLink {
+      color: $color-gold-dark;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

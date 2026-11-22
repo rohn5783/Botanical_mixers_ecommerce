@@ -1,0 +1,352 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(18, 33, 24, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.drawer {
+  width: 100%;
+  max-width: 440px;
+  height: 100%;
+  background-color: $color-bg-primary;
+  display: flex;
+  flex-direction: column;
+  box-shadow: $shadow-lift;
+  animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.header {
+  padding: $space-4 $space-6;
+  border-bottom: 1px solid $color-border-subtle;
+  @include flex-between;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: baseline;
+  gap: $space-2;
+
+  h3 {
+    font-size: $font-size-lg;
+    color: $color-forest-primary;
+  }
+
+  .itemCount {
+    font-size: $font-size-xs;
+    font-family: $font-family-mono;
+    color: $color-text-tertiary;
+  }
+}
+
+.closeBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-full;
+  @include flex-center;
+  color: $color-text-secondary;
+
+  &:hover {
+    background-color: $color-bg-secondary;
+    color: $color-forest-primary;
+  }
+}
+
+.shippingBarContainer {
+  background-color: $color-bg-secondary;
+  padding: $space-3 $space-6;
+  border-bottom: 1px solid $color-border-subtle;
+
+  .shippingNotice {
+    font-size: $font-size-xs;
+    color: $color-text-primary;
+    margin-bottom: $space-2;
+    text-align: center;
+
+    &.freeUnlocked {
+      color: $color-success;
+      font-weight: 600;
+    }
+  }
+
+  .progressBar {
+    width: 100%;
+    height: 6px;
+    background-color: $color-border-medium;
+    border-radius: $radius-full;
+    overflow: hidden;
+
+    .progressFill {
+      height: 100%;
+      background-color: $color-gold-primary;
+      border-radius: $radius-full;
+      transition: width 0.4s ease;
+    }
+  }
+}
+
+.itemsList {
+  flex: 1;
+  overflow-y: auto;
+  padding: $space-4 $space-6;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.emptyState {
+  height: 100%;
+  @include flex-center;
+  flex-direction: column;
+  text-align: center;
+  padding: $space-10 $space-4;
+
+  .emptyTitle {
+    font-family: $font-family-display;
+    font-size: $font-size-xl;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+  }
+
+  .emptyDesc {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    margin-bottom: $space-6;
+  }
+
+  .shopNowBtn {
+    background-color: $color-forest-primary;
+    color: #FFFFFF;
+    padding: $space-3 $space-6;
+    border-radius: $radius-md;
+    font-size: $font-size-sm;
+    font-weight: 600;
+
+    &:hover {
+      background-color: $color-forest-light;
+    }
+  }
+}
+
+.itemCard {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  padding: $space-3 0;
+  border-bottom: 1px solid $color-border-subtle;
+
+  .itemImageWrapper {
+    width: 64px;
+    height: 80px;
+    border-radius: $radius-sm;
+    background-color: #FFFFFF;
+    border: 1px solid $color-border-subtle;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    .itemImage {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .itemInfo {
+    flex: 1;
+
+    .itemName {
+      font-size: $font-size-sm;
+      font-weight: 600;
+      color: $color-forest-primary;
+      @include line-clamp(1);
+
+      &:hover {
+        color: $color-gold-dark;
+      }
+    }
+
+    .itemVariant {
+      display: block;
+      font-size: $font-size-xs;
+      color: $color-text-tertiary;
+      font-family: $font-family-mono;
+      margin: 2px 0 $space-2 0;
+    }
+
+    .itemPriceRow {
+      @include flex-between;
+
+      .itemPrice {
+        font-weight: 700;
+        color: $color-forest-primary;
+        font-size: $font-size-sm;
+      }
+
+      .quantityControls {
+        display: flex;
+        align-items: center;
+        border: 1px solid $color-border-medium;
+        border-radius: $radius-xs;
+        background-color: #FFFFFF;
+
+        .qtyBtn {
+          width: 24px;
+          height: 24px;
+          @include flex-center;
+          color: $color-forest-primary;
+
+          &:hover {
+            background-color: $color-bg-secondary;
+          }
+        }
+
+        .qtyValue {
+          font-size: $font-size-xs;
+          font-family: $font-family-mono;
+          padding: 0 $space-2;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .removeBtn {
+    color: $color-text-tertiary;
+    padding: $space-1;
+
+    &:hover {
+      color: $color-error;
+    }
+  }
+}
+
+.drawerFooter {
+  padding: $space-4 $space-6;
+  background-color: #FFFFFF;
+  border-top: 1px solid $color-border-subtle;
+}
+
+.couponForm {
+  display: flex;
+  gap: $space-2;
+  margin-bottom: $space-3;
+
+  .couponInputWrapper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .couponIcon {
+      position: absolute;
+      left: $space-3;
+      color: $color-text-tertiary;
+    }
+
+    .couponInput {
+      width: 100%;
+      padding-left: $space-8;
+      font-size: $font-size-xs;
+      text-transform: uppercase;
+    }
+  }
+
+  .applyCouponBtn {
+    background-color: $color-forest-primary;
+    color: #FFFFFF;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    padding: 0 $space-4;
+    border-radius: $radius-md;
+
+    &:hover {
+      background-color: $color-forest-light;
+    }
+  }
+}
+
+.couponErrorText {
+  color: $color-error;
+  font-size: 0.75rem;
+  margin-bottom: $space-2;
+}
+
+.couponSuccessText {
+  color: $color-success;
+  font-size: 0.75rem;
+  margin-bottom: $space-2;
+}
+
+.appliedCode {
+  font-size: $font-size-xs;
+  color: $color-success;
+  margin-bottom: $space-3;
+}
+
+.summaryRows {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  margin-bottom: $space-4;
+  border-top: 1px solid $color-border-subtle;
+  padding-top: $space-3;
+
+  .summaryRow {
+    @include flex-between;
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+
+    &.discountRow {
+      color: $color-success;
+      font-weight: 600;
+    }
+
+    &.totalRow {
+      font-size: $font-size-base;
+      font-weight: 700;
+      color: $color-forest-primary;
+      border-top: 1px solid $color-border-subtle;
+      padding-top: $space-2;
+      margin-top: $space-1;
+    }
+  }
+}
+
+.checkoutBtn {
+  width: 100%;
+  background-color: $color-gold-primary;
+  color: #FFFFFF;
+  padding: $space-3 $space-4;
+  border-radius: $radius-md;
+  font-weight: 600;
+  font-size: $font-size-sm;
+  @include flex-center;
+  gap: $space-2;
+
+  &:hover {
+    background-color: $color-gold-dark;
+  }
+}
+
+.trustBadges {
+  @include flex-center;
+  gap: $space-2;
+  font-size: 0.65rem;
+  color: $color-text-tertiary;
+  margin-top: $space-3;
+}

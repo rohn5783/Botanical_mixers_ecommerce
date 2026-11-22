@@ -1,0 +1,233 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.footer {
+  background-color: $color-bg-dark;
+  color: $color-text-light;
+  margin-top: $space-16;
+}
+
+.container {
+  @include container;
+}
+
+.valueProps {
+  border-bottom: 1px solid $color-border-dark;
+  padding: $space-10 0;
+}
+
+.propsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-6;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.propItem {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-4;
+
+  .propIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-md;
+    background-color: $color-bg-dark-surface;
+    border: 1px solid $color-border-dark;
+    color: $color-gold-primary;
+    @include flex-center;
+    flex-shrink: 0;
+  }
+
+  .propText {
+    h4 {
+      color: $color-text-light;
+      font-size: $font-size-base;
+      font-family: $font-family-sans;
+      font-weight: 600;
+      margin-bottom: $space-1;
+    }
+
+    p {
+      color: $color-text-muted-light;
+      font-size: $font-size-xs;
+      line-height: 1.5;
+    }
+  }
+}
+
+.mainFooter {
+  padding: $space-16 0;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-10;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  }
+}
+
+.brandCol {
+  .brandTitle {
+    font-family: $font-family-display;
+    color: $color-gold-light;
+    font-size: $font-size-2xl;
+    letter-spacing: 0.1em;
+    margin-bottom: $space-3;
+  }
+
+  .brandDesc {
+    color: $color-text-muted-light;
+    font-size: $font-size-sm;
+    line-height: 1.7;
+    margin-bottom: $space-4;
+  }
+
+  .fssaiBadge {
+    display: inline-flex;
+    flex-direction: column;
+    padding: $space-2 $space-3;
+    border-radius: $radius-sm;
+    background-color: $color-bg-dark-surface;
+    border: 1px solid $color-border-dark;
+    font-family: $font-family-mono;
+    font-size: $font-size-xs;
+    color: $color-gold-primary;
+
+    .batchNotice {
+      color: $color-text-muted-light;
+      font-size: 0.65rem;
+      margin-top: 2px;
+    }
+  }
+}
+
+.linksCol {
+  .colTitle {
+    color: $color-text-light;
+    font-size: $font-size-base;
+    font-family: $font-family-sans;
+    font-weight: 600;
+    margin-bottom: $space-4;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .linkList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    li a {
+      color: $color-text-muted-light;
+      font-size: $font-size-sm;
+
+      &:hover {
+        color: $color-gold-light;
+        padding-left: $space-1;
+      }
+    }
+  }
+}
+
+.newsletterCol {
+  .colTitle {
+    color: $color-text-light;
+    font-size: $font-size-base;
+    font-family: $font-family-sans;
+    font-weight: 600;
+    margin-bottom: $space-3;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .newsletterText {
+    color: $color-text-muted-light;
+    font-size: $font-size-sm;
+    margin-bottom: $space-4;
+    line-height: 1.6;
+  }
+
+  .newsletterForm {
+    display: flex;
+    gap: $space-2;
+    margin-bottom: $space-2;
+
+    .newsletterInput {
+      flex: 1;
+      background-color: $color-bg-dark-surface;
+      border: 1px solid $color-border-dark;
+      color: #FFFFFF;
+      font-size: $font-size-sm;
+
+      &::placeholder {
+        color: $color-text-tertiary;
+      }
+
+      &:focus {
+        border-color: $color-gold-primary;
+      }
+    }
+
+    .newsletterSubmit {
+      width: 44px;
+      height: 44px;
+      border-radius: $radius-md;
+      background-color: $color-gold-primary;
+      color: $color-bg-dark;
+      @include flex-center;
+
+      &:hover {
+        background-color: $color-gold-light;
+      }
+    }
+  }
+
+  .privacyNote {
+    font-size: 0.7rem;
+    color: $color-text-tertiary;
+  }
+}
+
+.bottomBar {
+  border-top: 1px solid $color-border-dark;
+  padding: $space-4 0;
+}
+
+.bottomContent {
+  @include flex-between;
+  flex-direction: column;
+  gap: $space-2;
+  text-align: center;
+
+  @include tablet {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .copyright {
+    color: $color-text-tertiary;
+    font-size: $font-size-xs;
+  }
+
+  .paymentMethods {
+    color: $color-gold-primary;
+    font-family: $font-family-mono;
+    font-size: 0.7rem;
+  }
+}

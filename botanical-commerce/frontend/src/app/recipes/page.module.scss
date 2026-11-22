@@ -1,0 +1,113 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.recipesPage {
+  width: 100%;
+  padding-bottom: $space-20;
+}
+
+.container {
+  @include container;
+}
+
+.banner {
+  background-color: $color-bg-secondary;
+  border-bottom: 1px solid $color-border-subtle;
+  padding: $space-12 0;
+  text-align: center;
+  margin-bottom: $space-8;
+
+  .bannerSub {
+    font-family: $font-family-mono;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: $color-gold-dark;
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: $space-2;
+  }
+
+  .bannerTitle {
+    font-size: $font-size-3xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+  }
+
+  .bannerDesc {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+.filterSection {
+  @include flex-between;
+  flex-wrap: wrap;
+  gap: $space-4;
+  margin-bottom: $space-8;
+  border-bottom: 1px solid $color-border-subtle;
+  padding-bottom: $space-6;
+}
+
+.categoryPills {
+  display: flex;
+  gap: $space-2;
+  overflow-x: auto;
+  padding-bottom: 2px;
+
+  .pillBtn {
+    padding: $space-2 $space-4;
+    border-radius: $radius-full;
+    background-color: #FFFFFF;
+    border: 1px solid $color-border-medium;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    color: $color-text-secondary;
+    white-space: nowrap;
+
+    &:hover {
+      border-color: $color-forest-primary;
+    }
+
+    &.activePill {
+      background-color: $color-forest-primary;
+      color: #FFFFFF;
+      border-color: $color-forest-primary;
+    }
+  }
+}
+
+.difficultySelect {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-medium;
+  border-radius: $radius-md;
+  padding: $space-2 $space-3;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  color: $color-forest-primary;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-8;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.loading, .empty {
+  text-align: center;
+  padding: $space-16 $space-4;
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+}

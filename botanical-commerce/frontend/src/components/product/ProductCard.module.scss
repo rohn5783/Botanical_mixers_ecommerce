@@ -1,0 +1,262 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.card {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  @include transition-default;
+
+  &:hover {
+    box-shadow: $shadow-lift;
+    border-color: $color-border-medium;
+    transform: translateY(-3px);
+
+    .quickAddBar {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background-color: $color-bg-surface-alt;
+  overflow: hidden;
+  @include flex-center;
+}
+
+.imageLink {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  .card:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.topBadges {
+  position: absolute;
+  top: $space-3;
+  left: $space-3;
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  pointer-events: none;
+}
+
+.dilutionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  background-color: rgba(250, 247, 242, 0.95);
+  backdrop-filter: blur(4px);
+  padding: 3px 8px;
+  border-radius: $radius-xs;
+  font-family: $font-family-mono;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: $color-forest-primary;
+  border: 1px solid $color-border-subtle;
+  letter-spacing: 0.05em;
+}
+
+.botanicalDot {
+  width: 6px;
+  height: 6px;
+  border-radius: $radius-full;
+}
+
+.kokumDot { background-color: $color-kokum-primary; }
+.nannariDot { background-color: $color-nannari-primary; }
+.jamunDot { background-color: $color-jamun-primary; }
+.hibiscusDot { background-color: $color-hibiscus-primary; }
+
+.featuredBadge {
+  background-color: $color-gold-primary;
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  font-family: $font-family-mono;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: $radius-xs;
+  text-transform: uppercase;
+}
+
+.wishlistBtn {
+  position: absolute;
+  top: $space-3;
+  right: $space-3;
+  width: 32px;
+  height: 32px;
+  border-radius: $radius-full;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  border: 1px solid $color-border-subtle;
+  @include flex-center;
+  color: $color-text-secondary;
+  z-index: 2;
+
+  &:hover {
+    color: $color-kokum-primary;
+    background-color: #FFFFFF;
+  }
+
+  &.activeWishlist {
+    color: $color-kokum-primary;
+  }
+}
+
+.quickAddBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: $space-3;
+  background: linear-gradient(to top, rgba(18, 33, 24, 0.8), transparent);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+  z-index: 2;
+}
+
+.quickAddBtn {
+  width: 100%;
+  background-color: $color-forest-primary;
+  color: $color-bg-primary;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  padding: $space-2 $space-4;
+  border-radius: $radius-sm;
+  @include flex-center;
+  gap: $space-2;
+
+  &:hover {
+    background-color: $color-gold-primary;
+    color: #FFFFFF;
+  }
+}
+
+.details {
+  padding: $space-4;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.categoryRow {
+  @include flex-between;
+  margin-bottom: $space-1;
+
+  .categoryName {
+    font-size: 0.7rem;
+    font-family: $font-family-mono;
+    color: $color-gold-dark;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .servingsCount {
+    font-size: 0.7rem;
+    color: $color-text-tertiary;
+  }
+}
+
+.productTitle {
+  font-size: $font-size-base;
+  font-family: $font-family-display;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: $space-2;
+
+  a {
+    color: $color-forest-primary;
+
+    &:hover {
+      color: $color-gold-dark;
+    }
+  }
+}
+
+.shortDesc {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+  line-height: 1.5;
+  margin-bottom: $space-3;
+  @include line-clamp(2);
+}
+
+.variantsRow {
+  display: flex;
+  gap: $space-1;
+  margin-bottom: $space-3;
+
+  .variantPill {
+    font-size: 0.7rem;
+    font-family: $font-family-mono;
+    padding: 2px 8px;
+    border-radius: $radius-xs;
+    border: 1px solid $color-border-subtle;
+    background-color: $color-bg-secondary;
+    color: $color-text-secondary;
+
+    &:hover {
+      border-color: $color-forest-primary;
+    }
+
+    &.activeVariant {
+      background-color: $color-forest-primary;
+      color: #FFFFFF;
+      border-color: $color-forest-primary;
+    }
+  }
+}
+
+.footerRow {
+  @include flex-between;
+  margin-top: auto;
+  border-top: 1px solid $color-border-subtle;
+  padding-top: $space-3;
+
+  .priceBlock {
+    display: flex;
+    align-items: baseline;
+    gap: $space-2;
+
+    .currentPrice {
+      font-size: $font-size-md;
+      font-weight: 700;
+      color: $color-forest-primary;
+    }
+
+    .originalPrice {
+      font-size: $font-size-xs;
+      color: $color-text-tertiary;
+      text-decoration: line-through;
+    }
+  }
+
+  .viewLink {
+    font-size: $font-size-xs;
+    font-weight: 600;
+    color: $color-gold-dark;
+
+    &:hover {
+      color: $color-forest-primary;
+    }
+  }
+}

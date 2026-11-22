@@ -1,0 +1,311 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.cartPage {
+  width: 100%;
+  padding-bottom: $space-20;
+}
+
+.container {
+  @include container;
+}
+
+.header {
+  padding: $space-8 0;
+  border-bottom: 1px solid $color-border-subtle;
+  margin-bottom: $space-8;
+
+  .backLink {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    font-size: $font-size-xs;
+    color: $color-gold-dark;
+    font-weight: 600;
+    margin-bottom: $space-2;
+  }
+
+  h1 {
+    font-size: $font-size-3xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+  }
+}
+
+.emptyCart {
+  text-align: center;
+  padding: $space-16 0;
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+
+  h2 {
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+  }
+
+  p {
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+    margin-bottom: $space-6;
+  }
+
+  .exploreBtn {
+    background-color: $color-forest-primary;
+    color: #FFFFFF;
+    padding: $space-3 $space-6;
+    border-radius: $radius-md;
+    font-weight: 600;
+    font-size: $font-size-sm;
+  }
+}
+
+.cartLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-8;
+
+  @include desktop {
+    grid-template-columns: 1fr 380px;
+  }
+}
+
+.itemsTableWrapper {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1.5fr 1fr 40px;
+  padding: $space-3 $space-4;
+  background-color: $color-bg-secondary;
+  font-size: 0.7rem;
+  font-family: $font-family-mono;
+  font-weight: 600;
+  color: $color-text-secondary;
+  text-transform: uppercase;
+  border-bottom: 1px solid $color-border-subtle;
+}
+
+.tableBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemRow {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1.5fr 1fr 40px;
+  align-items: center;
+  padding: $space-4;
+  border-bottom: 1px solid $color-border-subtle;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.productCell {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+
+  .productImg {
+    width: 60px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: $radius-xs;
+    border: 1px solid $color-border-subtle;
+  }
+
+  .prodMeta {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      font-size: $font-size-sm;
+      font-weight: 600;
+      color: $color-forest-primary;
+
+      &:hover {
+        color: $color-gold-dark;
+      }
+    }
+
+    .sku {
+      font-size: 0.65rem;
+      font-family: $font-family-mono;
+      color: $color-text-tertiary;
+    }
+  }
+}
+
+.formatCell, .priceCell, .totalCell {
+  font-size: $font-size-sm;
+  font-family: $font-family-mono;
+  color: $color-forest-primary;
+}
+
+.totalCell {
+  font-weight: 700;
+}
+
+.qtyCell {
+  .qtyControls {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid $color-border-medium;
+    border-radius: $radius-xs;
+
+    .qtyBtn {
+      width: 24px;
+      height: 24px;
+      @include flex-center;
+    }
+
+    .qtyVal {
+      font-size: $font-size-xs;
+      font-family: $font-family-mono;
+      padding: 0 $space-2;
+      font-weight: 600;
+    }
+  }
+}
+
+.deleteBtn {
+  color: $color-text-tertiary;
+
+  &:hover {
+    color: $color-error;
+  }
+}
+
+.summaryCard {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: $space-6;
+  box-shadow: $shadow-sm;
+
+  h3 {
+    font-size: $font-size-lg;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-4;
+    border-bottom: 1px solid $color-border-subtle;
+    padding-bottom: $space-2;
+  }
+}
+
+.couponForm {
+  display: flex;
+  gap: $space-2;
+  margin-bottom: $space-3;
+
+  .couponInputWrapper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .tagIcon {
+      position: absolute;
+      left: $space-3;
+      color: $color-text-tertiary;
+    }
+
+    input {
+      width: 100%;
+      padding-left: $space-8;
+      font-size: $font-size-xs;
+      text-transform: uppercase;
+    }
+  }
+
+  .applyBtn {
+    background-color: $color-forest-primary;
+    color: #FFFFFF;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    padding: 0 $space-4;
+    border-radius: $radius-md;
+
+    &:hover {
+      background-color: $color-forest-light;
+    }
+  }
+}
+
+.errorMsg {
+  color: $color-error;
+  font-size: 0.75rem;
+  margin-bottom: $space-2;
+}
+
+.successMsg {
+  color: $color-success;
+  font-size: 0.75rem;
+  margin-bottom: $space-2;
+}
+
+.summaryLines {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  margin: $space-4 0;
+  border-top: 1px solid $color-border-subtle;
+  padding-top: $space-3;
+
+  .summaryLine {
+    @include flex-between;
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+
+    &.discountLine {
+      color: $color-success;
+      font-weight: 600;
+    }
+
+    &.totalLine {
+      font-size: $font-size-lg;
+      font-weight: 700;
+      color: $color-forest-primary;
+      border-top: 1px solid $color-border-subtle;
+      padding-top: $space-3;
+      margin-top: $space-2;
+    }
+  }
+}
+
+.checkoutBtn {
+  width: 100%;
+  background-color: $color-gold-primary;
+  color: #FFFFFF;
+  padding: $space-3 $space-4;
+  border-radius: $radius-md;
+  font-weight: 600;
+  font-size: $font-size-sm;
+  @include flex-center;
+  gap: $space-2;
+
+  &:hover {
+    background-color: $color-gold-dark;
+  }
+}
+
+.trustBadges {
+  @include flex-center;
+  gap: $space-2;
+  font-size: 0.65rem;
+  color: $color-text-tertiary;
+  margin-top: $space-4;
+  text-align: center;
+}

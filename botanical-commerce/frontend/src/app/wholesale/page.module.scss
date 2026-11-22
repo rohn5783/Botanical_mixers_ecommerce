@@ -1,0 +1,219 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.wholesalePage {
+  width: 100%;
+  padding-bottom: $space-20;
+}
+
+.container {
+  @include container;
+}
+
+.heroBanner {
+  background-color: $color-bg-dark;
+  color: #FFFFFF;
+  padding: $space-16 0;
+  text-align: center;
+  margin-bottom: $space-12;
+
+  .heroSub {
+    font-family: $font-family-mono;
+    font-size: 0.7rem;
+    color: $color-gold-light;
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: $space-2;
+  }
+
+  .heroTitle {
+    font-size: $font-size-4xl;
+    font-family: $font-family-display;
+    color: #FFFFFF;
+    margin-bottom: $space-3;
+  }
+
+  .heroDesc {
+    font-size: $font-size-md;
+    color: $color-text-muted-light;
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+}
+
+.valueGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-6;
+  margin-bottom: $space-12;
+
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.vCard {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: $space-8 $space-6;
+  text-align: center;
+
+  .vIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-full;
+    background-color: $color-bg-secondary;
+    color: $color-forest-primary;
+    @include flex-center;
+    margin: 0 auto $space-4 auto;
+  }
+
+  h3 {
+    font-size: $font-size-base;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+  }
+
+  p {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+    line-height: 1.5;
+  }
+}
+
+.formContainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.formCard {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-lg;
+  padding: $space-10;
+  box-shadow: $shadow-md;
+}
+
+.formHeader {
+  margin-bottom: $space-8;
+  border-bottom: 1px solid $color-border-subtle;
+  padding-bottom: $space-4;
+
+  h2 {
+    font-size: $font-size-2xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-1;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+  }
+}
+
+.errorAlert {
+  background-color: #FDF2F2;
+  border: 1px solid $color-error;
+  color: $color-error;
+  padding: $space-3 $space-4;
+  border-radius: $radius-sm;
+  font-size: $font-size-xs;
+  margin-bottom: $space-6;
+}
+
+.formRow {
+  margin-bottom: $space-4;
+}
+
+.formRowTwo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-4;
+  margin-bottom: $space-4;
+
+  @include tablet {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+
+  label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $color-forest-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  input, select, textarea {
+    font-size: $font-size-sm;
+  }
+
+  .hintText {
+    font-size: 0.65rem;
+    color: $color-text-tertiary;
+  }
+}
+
+.submitBtn {
+  width: 100%;
+  background-color: $color-forest-primary;
+  color: #FFFFFF;
+  padding: $space-4;
+  border-radius: $radius-md;
+  font-weight: 700;
+  font-size: $font-size-sm;
+  @include flex-center;
+  gap: $space-2;
+  margin-top: $space-4;
+
+  &:hover {
+    background-color: $color-forest-light;
+  }
+}
+
+.successCard {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-lg;
+  padding: $space-16 $space-8;
+  text-align: center;
+  box-shadow: $shadow-md;
+
+  .successIcon {
+    color: $color-success;
+    margin-bottom: $space-4;
+  }
+
+  h2 {
+    font-size: $font-size-2xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-3;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    max-width: 580px;
+    margin: 0 auto $space-8 auto;
+    line-height: 1.6;
+  }
+
+  .newEnquiryBtn {
+    background-color: $color-forest-primary;
+    color: #FFFFFF;
+    padding: $space-3 $space-6;
+    border-radius: $radius-md;
+    font-weight: 600;
+    font-size: $font-size-sm;
+  }
+}

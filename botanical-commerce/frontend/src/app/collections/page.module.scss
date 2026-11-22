@@ -1,0 +1,233 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.collectionsPage {
+  width: 100%;
+  padding-bottom: $space-20;
+}
+
+.container {
+  @include container;
+}
+
+.banner {
+  background-color: $color-bg-secondary;
+  border-bottom: 1px solid $color-border-subtle;
+  padding: $space-12 0;
+  text-align: center;
+  margin-bottom: $space-10;
+
+  .sub {
+    font-family: $font-family-mono;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: $color-gold-dark;
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: $space-2;
+  }
+
+  .title {
+    font-size: $font-size-3xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+  }
+
+  .desc {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+.bundlesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: $space-10;
+}
+
+.bundleCard {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  display: grid;
+  grid-template-columns: 1fr;
+  @include transition-default;
+
+  &:hover {
+    box-shadow: $shadow-lift;
+    border-color: $color-gold-primary;
+  }
+
+  @include desktop {
+    grid-template-columns: 420px 1fr;
+  }
+}
+
+.imageCol {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+
+  @include desktop {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .bundleImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .bundleBadge {
+    position: absolute;
+    top: $space-4;
+    left: $space-4;
+    background-color: $color-forest-primary;
+    color: #FFFFFF;
+    font-family: $font-family-mono;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: $radius-xs;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+}
+
+.detailsCol {
+  padding: $space-8;
+  display: flex;
+  flex-direction: column;
+
+  .topMeta {
+    margin-bottom: $space-2;
+
+    .yieldTag {
+      font-size: 0.7rem;
+      font-family: $font-family-mono;
+      color: $color-gold-dark;
+      background-color: $color-bg-secondary;
+      padding: 2px 8px;
+      border-radius: $radius-xs;
+    }
+  }
+
+  h2 {
+    font-size: $font-size-2xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-1;
+  }
+
+  .tagline {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-gold-dark;
+    margin-bottom: $space-4;
+    display: block;
+  }
+
+  .desc {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    line-height: 1.6;
+    margin-bottom: $space-6;
+  }
+
+  .includesBox {
+    background-color: $color-bg-secondary;
+    border: 1px solid $color-border-subtle;
+    border-radius: $radius-sm;
+    padding: $space-4;
+    margin-bottom: $space-6;
+
+    strong {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-family: $font-family-mono;
+      color: $color-forest-primary;
+      margin-bottom: $space-2;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: $space-2;
+
+      li {
+        font-size: $font-size-xs;
+        color: $color-text-secondary;
+        display: flex;
+        align-items: center;
+        gap: $space-2;
+
+        .checkIcon {
+          color: $color-gold-primary;
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
+
+  .priceRow {
+    @include flex-between;
+    margin-top: auto;
+    border-top: 1px solid $color-border-subtle;
+    padding-top: $space-4;
+    flex-wrap: wrap;
+    gap: $space-4;
+
+    .priceBlock {
+      display: flex;
+      align-items: baseline;
+      gap: $space-2;
+
+      .priceCurrent {
+        font-size: $font-size-2xl;
+        font-weight: 700;
+        color: $color-forest-primary;
+      }
+
+      .priceOriginal {
+        font-size: $font-size-sm;
+        color: $color-text-tertiary;
+        text-decoration: line-through;
+      }
+
+      .savingsPill {
+        font-size: 0.7rem;
+        background-color: #EBF7EE;
+        color: $color-success;
+        font-weight: 600;
+        padding: 2px 6px;
+        border-radius: $radius-xs;
+      }
+    }
+
+    .addBundleBtn {
+      background-color: $color-forest-primary;
+      color: #FFFFFF;
+      padding: $space-3 $space-6;
+      border-radius: $radius-md;
+      font-weight: 600;
+      font-size: $font-size-sm;
+      display: inline-flex;
+      align-items: center;
+      gap: $space-2;
+
+      &:hover {
+        background-color: $color-forest-light;
+      }
+    }
+  }
+}

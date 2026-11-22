@@ -1,0 +1,350 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.adminPage {
+  width: 100%;
+  padding-bottom: $space-20;
+  background-color: $color-bg-primary;
+}
+
+.container {
+  @include container;
+}
+
+.adminBar {
+  background-color: $color-bg-dark;
+  color: #FFFFFF;
+  padding: $space-8 0;
+  border-bottom: 1px solid $color-border-dark;
+  margin-bottom: $space-8;
+
+  .barContent {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: $space-4;
+
+    .barBadge {
+      font-family: $font-family-mono;
+      font-size: 0.65rem;
+      color: $color-gold-light;
+      letter-spacing: 0.15em;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    h1 {
+      font-size: $font-size-2xl;
+      color: #FFFFFF;
+    }
+
+    .refreshBtn {
+      background-color: $color-bg-dark-surface;
+      color: $color-gold-light;
+      border: 1px solid $color-border-dark;
+      padding: $space-2 $space-4;
+      border-radius: $radius-md;
+      font-size: $font-size-xs;
+      display: inline-flex;
+      align-items: center;
+      gap: $space-2;
+
+      &:hover {
+        background-color: $color-forest-primary;
+        color: #FFFFFF;
+      }
+    }
+  }
+}
+
+.adminTabs {
+  display: flex;
+  gap: $space-2;
+  overflow-x: auto;
+  border-bottom: 1px solid $color-border-subtle;
+  padding-bottom: $space-2;
+  margin-bottom: $space-8;
+
+  .tabBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    padding: $space-3 $space-4;
+    border-radius: $radius-md;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    color: $color-text-secondary;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: $color-bg-secondary;
+      color: $color-forest-primary;
+    }
+
+    &.activeTab {
+      background-color: $color-forest-primary;
+      color: #FFFFFF;
+    }
+  }
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-4;
+  margin-bottom: $space-8;
+
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.kpiCard {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: $space-6;
+  display: flex;
+  flex-direction: column;
+
+  .kpiLabel {
+    font-size: 0.75rem;
+    color: $color-text-secondary;
+    margin-bottom: $space-1;
+  }
+
+  .kpiValue {
+    font-size: 2rem;
+    font-family: $font-family-mono;
+    font-weight: 700;
+    color: $color-forest-primary;
+    margin-bottom: $space-1;
+  }
+
+  .kpiSub {
+    font-size: 0.65rem;
+    color: $color-text-tertiary;
+  }
+}
+
+.recentOrdersCard, .tabContent {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: $space-6;
+  box-shadow: $shadow-sm;
+
+  h3 {
+    font-size: $font-size-lg;
+    color: $color-forest-primary;
+    margin-bottom: $space-4;
+  }
+}
+
+.sectionHeader {
+  margin-bottom: $space-6;
+
+  h2 {
+    font-size: $font-size-xl;
+    color: $color-forest-primary;
+  }
+
+  p {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+  }
+}
+
+.sectionHeaderBetween {
+  @include flex-between;
+  margin-bottom: $space-6;
+
+  h2 {
+    font-size: $font-size-xl;
+    color: $color-forest-primary;
+  }
+
+  p {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+  }
+
+  .primaryActionBtn {
+    background-color: $color-forest-primary;
+    color: #FFFFFF;
+    padding: $space-2 $space-4;
+    border-radius: $radius-md;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+  }
+}
+
+.adminTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-xs;
+
+  th, td {
+    padding: $space-3 $space-4;
+    text-align: left;
+    border-bottom: 1px solid $color-border-subtle;
+  }
+
+  th {
+    font-size: 0.65rem;
+    font-family: $font-family-mono;
+    text-transform: uppercase;
+    color: $color-text-secondary;
+    background-color: $color-bg-secondary;
+  }
+
+  .tableProd {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+
+    img {
+      width: 36px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+  }
+
+  .subText {
+    display: block;
+    font-size: 0.65rem;
+    color: $color-text-tertiary;
+  }
+
+  .badge {
+    font-family: $font-family-mono;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 2px;
+    background-color: $color-bg-secondary;
+
+    &.PAID, &.CONFIRMED, &.APPROVED { color: $color-success; }
+    &.PENDING, &.NEW { color: $color-warning; }
+    &.FAILED, &.CANCELLED, &.REJECTED { color: $color-error; }
+  }
+
+  .actionBtn {
+    background-color: $color-bg-secondary;
+    border: 1px solid $color-border-subtle;
+    padding: 3px 8px;
+    border-radius: $radius-xs;
+    font-size: 0.7rem;
+    font-weight: 600;
+
+    &:hover {
+      background-color: $color-forest-primary;
+      color: #FFFFFF;
+    }
+  }
+
+  .quoteBtn {
+    background-color: $color-gold-primary;
+    color: #FFFFFF;
+    padding: 3px 8px;
+    border-radius: $radius-xs;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .quoteSentTag {
+    color: $color-success;
+    font-weight: 600;
+  }
+
+  .publishedPill {
+    color: $color-success;
+    font-weight: 600;
+  }
+
+  .draftPill {
+    color: $color-text-tertiary;
+  }
+
+  .stockLowBadge {
+    color: $color-error;
+    font-weight: 700;
+    font-family: $font-family-mono;
+  }
+
+  .stockOkBadge {
+    color: $color-success;
+    font-weight: 700;
+    font-family: $font-family-mono;
+  }
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(18, 33, 24, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  @include flex-center;
+}
+
+.modalCard {
+  background-color: #FFFFFF;
+  border-radius: $radius-lg;
+  padding: $space-8;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: $shadow-lift;
+
+  h3 {
+    font-size: $font-size-lg;
+    color: $color-forest-primary;
+    margin-bottom: $space-4;
+  }
+
+  .modalInputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+    margin-bottom: $space-4;
+
+    label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: $color-forest-primary;
+    }
+
+    input, select {
+      font-size: $font-size-sm;
+    }
+  }
+
+  .modalActions {
+    @include flex-between;
+    margin-top: $space-6;
+
+    .cancelModalBtn {
+      font-size: $font-size-xs;
+      color: $color-text-secondary;
+    }
+
+    .saveModalBtn {
+      background-color: $color-forest-primary;
+      color: #FFFFFF;
+      padding: $space-2 $space-5;
+      border-radius: $radius-md;
+      font-size: $font-size-xs;
+      font-weight: 600;
+    }
+  }
+}
+
+.adminLoading {
+  min-height: 60vh;
+  @include flex-center;
+  font-size: $font-size-base;
+  color: $color-forest-primary;
+}

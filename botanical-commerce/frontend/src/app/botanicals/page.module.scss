@@ -1,0 +1,174 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.botanicalsHub {
+  width: 100%;
+  padding-bottom: $space-20;
+}
+
+.container {
+  @include container;
+}
+
+.heroBanner {
+  background-color: $color-bg-dark;
+  color: #FFFFFF;
+  padding: $space-16 0;
+  text-align: center;
+  margin-bottom: $space-12;
+
+  .heroSub {
+    font-family: $font-family-mono;
+    font-size: 0.7rem;
+    color: $color-gold-primary;
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: $space-2;
+  }
+
+  .heroTitle {
+    font-size: $font-size-4xl;
+    font-family: $font-family-display;
+    color: #FFFFFF;
+    margin-bottom: $space-3;
+  }
+
+  .heroDesc {
+    font-size: $font-size-md;
+    color: $color-text-muted-light;
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+}
+
+.botanicalsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+}
+
+.botanicalCard {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  display: grid;
+  grid-template-columns: 1fr;
+  @include transition-default;
+
+  &:hover {
+    box-shadow: $shadow-lift;
+    border-color: $color-gold-primary;
+  }
+
+  @include desktop {
+    grid-template-columns: 450px 1fr;
+  }
+}
+
+.imageCol {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+
+  @include desktop {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .botImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .originPill {
+    position: absolute;
+    bottom: $space-4;
+    left: $space-4;
+    background-color: rgba(18, 33, 24, 0.85);
+    backdrop-filter: blur(4px);
+    color: #FFFFFF;
+    font-family: $font-family-mono;
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: $radius-xs;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+}
+
+.contentCol {
+  padding: $space-8;
+  display: flex;
+  flex-direction: column;
+
+  .sciName {
+    font-family: $font-family-display;
+    font-style: italic;
+    font-size: $font-size-sm;
+    color: $color-gold-dark;
+  }
+
+  h2 {
+    font-size: $font-size-2xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin: $space-1 0 $space-3 0;
+  }
+
+  .quote {
+    font-size: $font-size-sm;
+    font-style: italic;
+    color: $color-text-secondary;
+    border-left: 2px solid $color-gold-primary;
+    padding-left: $space-4;
+    margin-bottom: $space-4;
+    line-height: 1.6;
+  }
+
+  .desc {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    margin-bottom: $space-4;
+    line-height: 1.6;
+  }
+
+  .tastePills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+    margin-bottom: $space-6;
+
+    .tastePill {
+      font-size: 0.7rem;
+      font-family: $font-family-mono;
+      background-color: $color-bg-secondary;
+      color: $color-forest-primary;
+      padding: 3px 10px;
+      border-radius: $radius-xs;
+      border: 1px solid $color-border-subtle;
+    }
+  }
+
+  .exploreBtn {
+    margin-top: auto;
+    background-color: $color-forest-primary;
+    color: #FFFFFF;
+    padding: $space-3 $space-6;
+    border-radius: $radius-md;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    align-self: flex-start;
+
+    &:hover {
+      background-color: $color-forest-light;
+    }
+  }
+}

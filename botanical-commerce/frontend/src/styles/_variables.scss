@@ -1,0 +1,97 @@
+// ARANYA BOTANICALS — DESIGN VARIABLES
+
+// Primary Surfaces
+$color-bg-primary: #FAF7F2;       // Warm linen ivory (Main background)
+$color-bg-secondary: #F3EFE6;     // Muted parchment cream (Sub-panels)
+$color-bg-surface: #FFFFFF;       // Card surfaces
+$color-bg-surface-alt: #F9F6F0;   // Subtle card tint
+$color-bg-dark: #122118;          // Deep forest midnight canopy (Hero/Footer/B2B)
+$color-bg-dark-surface: #1B2F23;  // Deep card on dark surfaces
+
+// Brand Colors
+$color-forest-primary: #1A2F23;   // Core brand green
+$color-forest-light: #2D4C3A;     // Secondary botanical green
+$color-forest-dark: #0D1811;      // Deepest forest
+
+$color-gold-primary: #C8974E;     // Warm antique brass / gold
+$color-gold-light: #DFC08A;       // Highlight gold
+$color-gold-dark: #9E7432;        // Active gold
+
+// Botanical Pigments (Extracted from real reference plants)
+$color-kokum-primary: #932938;
+$color-kokum-light: #F8E9EB;
+$color-kokum-dark: #6B1C27;
+
+$color-nannari-primary: #7A5435;
+$color-nannari-light: #F6EFEA;
+$color-nannari-dark: #523722;
+
+$color-jamun-primary: #4E1D3B;
+$color-jamun-light: #F4EAF0;
+$color-jamun-dark: #351328;
+
+$color-hibiscus-primary: #A62B47;
+$color-hibiscus-light: #FAEAEE;
+$color-hibiscus-dark: #771D32;
+
+// Text Colors
+$color-text-primary: #19211D;     // Charcoal pine for high legibility
+$color-text-secondary: #515C56;   // Muted slate botanical
+$color-text-tertiary: #7F8B85;    // Captions, subtitles
+$color-text-light: #FAF7F2;       // Ivory text on dark surfaces
+$color-text-muted-light: #A5B5AC;// Muted text on dark surfaces
+
+// Borders & Hairlines
+$color-border-subtle: #E8E2D8;    // Warm hairline divider
+$color-border-medium: #D1C8BA;    // Input & card border
+$color-border-dark: #273D2F;      // Border on dark backgrounds
+
+// Status Colors
+$color-success: #2E6F40;
+$color-warning: #B87A1E;
+$color-error: #A82D2D;
+$color-info: #2B6282;
+
+// Typography Scale
+$font-family-display: 'Playfair Display', Georgia, serif;
+$font-family-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+$font-family-mono: 'JetBrains Mono', SFMono-Regular, monospace;
+
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-base: 1rem;     // 16px
+$font-size-md: 1.125rem;   // 18px
+$font-size-lg: 1.25rem;    // 20px
+$font-size-xl: 1.5rem;     // 24px
+$font-size-2xl: 1.875rem;  // 30px
+$font-size-3xl: 2.25rem;   // 36px
+$font-size-4xl: 3rem;      // 48px
+$font-size-5xl: 3.75rem;   // 60px
+
+// Spacing
+$space-1: 0.25rem;  // 4px
+$space-2: 0.5rem;   // 8px
+$space-3: 0.75rem;  // 12px
+$space-4: 1rem;     // 16px
+$space-5: 1.25rem;  // 20px
+$space-6: 1.5rem;   // 24px
+$space-8: 2rem;     // 32px
+$space-10: 2.5rem;  // 40px
+$space-12: 3rem;    // 48px
+$space-16: 4rem;    // 64px
+$space-20: 5rem;    // 80px
+$space-24: 6rem;    // 96px
+
+// Radii
+$radius-none: 0;
+$radius-xs: 2px;
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-full: 9999px;
+
+// Shadows
+$shadow-sm: 0 1px 3px rgba(25, 33, 29, 0.05);
+$shadow-md: 0 4px 12px rgba(25, 33, 29, 0.08);
+$shadow-lg: 0 10px 25px rgba(25, 33, 29, 0.10);
+$shadow-lift: 0 14px 30px rgba(25, 33, 29, 0.12);

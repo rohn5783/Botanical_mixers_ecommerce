@@ -1,0 +1,164 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.botanicalDetail {
+  width: 100%;
+  padding-bottom: $space-20;
+}
+
+.container {
+  @include container;
+}
+
+.heroHeader {
+  background-color: $color-bg-dark;
+  color: #FFFFFF;
+  padding: $space-16 0;
+  text-align: center;
+  margin-bottom: $space-12;
+
+  .sciTitle {
+    font-family: $font-family-display;
+    font-style: italic;
+    font-size: $font-size-md;
+    color: $color-gold-light;
+    margin-bottom: $space-2;
+    display: block;
+  }
+
+  .title {
+    font-size: 3rem;
+    font-family: $font-family-display;
+    color: #FFFFFF;
+    margin-bottom: $space-3;
+  }
+
+  .quote {
+    font-size: $font-size-md;
+    font-style: italic;
+    color: $color-text-muted-light;
+    max-width: 680px;
+    margin: 0 auto $space-6 auto;
+    line-height: 1.6;
+  }
+
+  .regionBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    background-color: $color-bg-dark-surface;
+    border: 1px solid $color-border-dark;
+    padding: $space-2 $space-4;
+    border-radius: $radius-full;
+    font-family: $font-family-mono;
+    font-size: 0.75rem;
+    color: $color-gold-primary;
+  }
+}
+
+.scienceGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-6;
+  margin-bottom: $space-8;
+
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.scienceCard {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: $space-6;
+
+  .cardHeader {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    margin-bottom: $space-4;
+    border-bottom: 1px solid $color-border-subtle;
+    padding-bottom: $space-3;
+
+    .cardIcon {
+      color: $color-gold-primary;
+    }
+
+    h3 {
+      font-size: $font-size-base;
+      font-family: $font-family-display;
+      color: $color-forest-primary;
+    }
+  }
+
+  p {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    line-height: 1.6;
+  }
+
+  .usesList {
+    padding-left: $space-4;
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    li {
+      font-size: $font-size-sm;
+      color: $color-text-secondary;
+    }
+  }
+}
+
+.disclaimerBox {
+  background-color: $color-bg-secondary;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-sm;
+  padding: $space-4;
+  font-size: 0.75rem;
+  color: $color-text-tertiary;
+  line-height: 1.5;
+  margin-bottom: $space-12;
+}
+
+.productsSection, .recipesSection {
+  margin-bottom: $space-16;
+
+  .sectionHeader {
+    margin-bottom: $space-8;
+
+    h2 {
+      font-size: $font-size-2xl;
+      font-family: $font-family-display;
+      color: $color-forest-primary;
+      margin-bottom: $space-1;
+    }
+
+    p {
+      font-size: $font-size-sm;
+      color: $color-text-secondary;
+    }
+  }
+}
+
+.productsGrid, .recipesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-6;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.loading, .error {
+  min-height: 50vh;
+  @include flex-center;
+  flex-direction: column;
+  gap: $space-4;
+}

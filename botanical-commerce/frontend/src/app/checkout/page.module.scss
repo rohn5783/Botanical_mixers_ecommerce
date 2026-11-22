@@ -1,0 +1,354 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.checkoutPage {
+  width: 100%;
+  padding-bottom: $space-20;
+}
+
+.container {
+  @include container;
+}
+
+.header {
+  padding: $space-8 0;
+  border-bottom: 1px solid $color-border-subtle;
+  margin-bottom: $space-8;
+
+  h1 {
+    font-size: $font-size-3xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-1;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+  }
+}
+
+.errorAlert {
+  background-color: #FDF2F2;
+  border: 1px solid $color-error;
+  color: $color-error;
+  padding: $space-4;
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  margin-bottom: $space-6;
+  font-size: $font-size-sm;
+}
+
+.checkoutGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-10;
+
+  @include desktop {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+.shippingForm {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: $space-8;
+  box-shadow: $shadow-sm;
+}
+
+.formSection {
+  margin-bottom: $space-8;
+
+  h3 {
+    font-size: $font-size-base;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-4;
+    border-bottom: 1px solid $color-border-subtle;
+    padding-bottom: $space-2;
+  }
+}
+
+.formRow {
+  margin-bottom: $space-4;
+}
+
+.formRowTwo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-4;
+  margin-bottom: $space-4;
+
+  @include tablet {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+
+  label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $color-text-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  input, textarea {
+    font-size: $font-size-sm;
+  }
+}
+
+.submitPaymentBtn {
+  width: 100%;
+  background-color: $color-gold-primary;
+  color: #FFFFFF;
+  padding: $space-4;
+  border-radius: $radius-md;
+  font-weight: 700;
+  font-size: $font-size-base;
+  @include flex-center;
+  gap: $space-2;
+
+  &:hover {
+    background-color: $color-gold-dark;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+.orderCard {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: $space-6;
+  box-shadow: $shadow-sm;
+
+  h3 {
+    font-size: $font-size-lg;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-4;
+    border-bottom: 1px solid $color-border-subtle;
+    padding-bottom: $space-2;
+  }
+}
+
+.itemsScroll {
+  max-height: 280px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  margin-bottom: $space-4;
+}
+
+.summaryItem {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+
+  .itemImg {
+    width: 48px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: $radius-xs;
+    border: 1px solid $color-border-subtle;
+  }
+
+  .itemMeta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    strong {
+      font-size: $font-size-xs;
+      color: $color-forest-primary;
+      @include line-clamp(1);
+    }
+
+    span {
+      font-size: 0.7rem;
+      color: $color-text-tertiary;
+    }
+  }
+
+  .itemPrice {
+    font-family: $font-family-mono;
+    font-size: $font-size-sm;
+    font-weight: 700;
+  }
+}
+
+.costLines {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  border-top: 1px solid $color-border-subtle;
+  padding-top: $space-4;
+  margin-bottom: $space-6;
+
+  .line {
+    @include flex-between;
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+
+    &.discountLine {
+      color: $color-success;
+      font-weight: 600;
+    }
+
+    &.totalLine {
+      font-size: $font-size-xl;
+      font-weight: 700;
+      color: $color-forest-primary;
+      border-top: 1px solid $color-border-subtle;
+      padding-top: $space-3;
+      margin-top: $space-2;
+    }
+  }
+}
+
+.securityBadge {
+  background-color: $color-bg-secondary;
+  border-radius: $radius-sm;
+  padding: $space-3;
+  display: flex;
+  align-items: flex-start;
+  gap: $space-3;
+
+  svg {
+    color: $color-forest-primary;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  p {
+    font-size: 0.7rem;
+    color: $color-text-secondary;
+    line-height: 1.4;
+  }
+}
+
+// Confirmation state
+.confirmationPage {
+  min-height: 70vh;
+  @include flex-center;
+  padding: $space-16 0;
+}
+
+.confirmationCard {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-lg;
+  padding: $space-12 $space-8;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: $shadow-lift;
+
+  .successIcon {
+    color: $color-success;
+    margin-bottom: $space-4;
+  }
+
+  .confirmSub {
+    font-family: $font-family-mono;
+    font-size: 0.7rem;
+    color: $color-gold-dark;
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: $space-2;
+  }
+
+  .confirmTitle {
+    font-size: $font-size-3xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+  }
+
+  .orderNum {
+    font-family: $font-family-mono;
+    font-size: $font-size-md;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+  }
+
+  .confirmDesc {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    margin-bottom: $space-6;
+  }
+
+  .orderDetailsBox {
+    background-color: $color-bg-secondary;
+    border-radius: $radius-sm;
+    padding: $space-4;
+    text-align: left;
+    margin-bottom: $space-8;
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    .detailRow {
+      @include flex-between;
+      font-size: $font-size-xs;
+
+      .paidBadge {
+        color: $color-success;
+        font-weight: 700;
+        font-family: $font-family-mono;
+      }
+    }
+  }
+
+  .actionLinks {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+
+    .accountBtn {
+      background-color: $color-forest-primary;
+      color: #FFFFFF;
+      padding: $space-3 $space-6;
+      border-radius: $radius-md;
+      font-weight: 600;
+      font-size: $font-size-sm;
+    }
+
+    .continueBtn {
+      color: $color-gold-dark;
+      font-size: $font-size-xs;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.emptyContainer {
+  min-height: 50vh;
+  @include flex-center;
+  flex-direction: column;
+  gap: $space-4;
+  text-align: center;
+
+  .returnShopBtn {
+    background-color: $color-forest-primary;
+    color: #FFFFFF;
+    padding: $space-3 $space-6;
+    border-radius: $radius-md;
+    font-weight: 600;
+  }
+}

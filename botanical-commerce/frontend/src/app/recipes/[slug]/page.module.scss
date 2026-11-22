@@ -1,0 +1,339 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.recipeDetail {
+  width: 100%;
+  padding-bottom: $space-20;
+}
+
+.container {
+  @include container;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  color: $color-gold-dark;
+  margin: $space-6 0 $space-4 0;
+
+  &:hover {
+    color: $color-forest-primary;
+  }
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-10;
+  margin-bottom: $space-12;
+
+  @include desktop {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.heroImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  border: 1px solid $color-border-subtle;
+
+  .heroImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .badge {
+    position: absolute;
+    top: $space-4;
+    left: $space-4;
+    background-color: rgba(18, 33, 24, 0.85);
+    color: $color-gold-light;
+    font-family: $font-family-mono;
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: $radius-xs;
+    text-transform: uppercase;
+  }
+}
+
+.heroInfo {
+  display: flex;
+  flex-direction: column;
+
+  .metaRow {
+    display: flex;
+    gap: $space-2;
+    margin-bottom: $space-3;
+  }
+
+  .metaBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background-color: $color-bg-secondary;
+    border: 1px solid $color-border-subtle;
+    font-size: 0.75rem;
+    font-family: $font-family-mono;
+    color: $color-forest-primary;
+    padding: 2px 8px;
+    border-radius: $radius-xs;
+
+    svg {
+      color: $color-gold-primary;
+    }
+  }
+
+  .title {
+    font-size: 2.25rem;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-2;
+    line-height: 1.25;
+  }
+
+  .subtitle {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-gold-dark;
+    margin-bottom: $space-4;
+  }
+
+  .desc {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    line-height: 1.6;
+    margin-bottom: $space-6;
+  }
+
+  .serveNotes {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    margin-bottom: $space-6;
+    padding-bottom: $space-4;
+    border-bottom: 1px solid $color-border-subtle;
+
+    .noteItem {
+      font-size: $font-size-xs;
+      color: $color-text-secondary;
+
+      strong {
+        color: $color-forest-primary;
+      }
+    }
+  }
+
+  .productBuyCard {
+    background-color: $color-bg-secondary;
+    border: 1px solid $color-border-subtle;
+    border-radius: $radius-md;
+    padding: $space-4;
+    @include flex-between;
+    gap: $space-4;
+    flex-wrap: wrap;
+
+    .productBuyInfo {
+      display: flex;
+      flex-direction: column;
+
+      .tagLabel {
+        font-family: $font-family-mono;
+        font-size: 0.65rem;
+        color: $color-text-tertiary;
+        text-transform: uppercase;
+      }
+
+      .prodName {
+        font-size: $font-size-sm;
+        font-weight: 700;
+        color: $color-forest-primary;
+      }
+
+      .prodPrice {
+        font-family: $font-family-mono;
+        font-size: $font-size-xs;
+        color: $color-gold-dark;
+      }
+    }
+
+    .addBtn {
+      background-color: $color-forest-primary;
+      color: #FFFFFF;
+      font-size: $font-size-xs;
+      font-weight: 600;
+      padding: $space-3 $space-5;
+      border-radius: $radius-md;
+      display: inline-flex;
+      align-items: center;
+      gap: $space-2;
+
+      &:hover {
+        background-color: $color-forest-light;
+      }
+
+      &.successBtn {
+        background-color: $color-success;
+      }
+    }
+  }
+}
+
+.recipeBodyGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-8;
+  margin-bottom: $space-16;
+
+  @include desktop {
+    grid-template-columns: 380px 1fr;
+  }
+}
+
+.ingredientsBox, .stepsBox {
+  background-color: #FFFFFF;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: $space-8;
+  box-shadow: $shadow-sm;
+
+  h3 {
+    font-size: $font-size-lg;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-6;
+    border-bottom: 1px solid $color-border-subtle;
+    padding-bottom: $space-3;
+  }
+}
+
+.ingList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+
+  li {
+    @include flex-between;
+    padding: $space-2 0;
+    border-bottom: 1px dashed $color-border-subtle;
+    font-size: $font-size-sm;
+
+    &.botanicalIng {
+      background-color: #FFFDF9;
+      border-radius: $radius-xs;
+      padding: $space-2 $space-3;
+      border: 1px solid $color-gold-light;
+    }
+
+    .ingInfo {
+      display: flex;
+      flex-direction: column;
+
+      .ingName {
+        color: $color-forest-primary;
+        font-weight: 500;
+      }
+
+      .concentrateBadge {
+        font-size: 0.65rem;
+        font-family: $font-family-mono;
+        color: $color-gold-dark;
+      }
+    }
+
+    .ingMeasure {
+      font-family: $font-family-mono;
+      font-weight: 600;
+      color: $color-gold-dark;
+    }
+  }
+}
+
+.stepList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+}
+
+.stepRow {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-4;
+
+  .stepNumCircle {
+    width: 32px;
+    height: 32px;
+    border-radius: $radius-full;
+    background-color: $color-forest-primary;
+    color: #FFFFFF;
+    @include flex-center;
+    font-family: $font-family-mono;
+    font-size: $font-size-xs;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .stepDetails {
+    flex: 1;
+
+    h4 {
+      font-size: $font-size-base;
+      font-family: $font-family-sans;
+      font-weight: 700;
+      color: $color-forest-primary;
+      margin-bottom: $space-1;
+    }
+
+    p {
+      font-size: $font-size-sm;
+      color: $color-text-secondary;
+      line-height: 1.6;
+    }
+
+    .tipBox {
+      margin-top: $space-2;
+      background-color: $color-bg-secondary;
+      border-radius: $radius-sm;
+      padding: $space-2 $space-3;
+      font-size: 0.75rem;
+      color: $color-text-secondary;
+
+      strong {
+        color: $color-gold-dark;
+      }
+    }
+  }
+}
+
+.relatedSection {
+  h2 {
+    font-size: $font-size-2xl;
+    font-family: $font-family-display;
+    color: $color-forest-primary;
+    margin-bottom: $space-8;
+  }
+
+  .relatedGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-6;
+
+    @include tablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.loading, .error {
+  min-height: 50vh;
+  @include flex-center;
+  flex-direction: column;
+}
