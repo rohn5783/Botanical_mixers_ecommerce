@@ -182,7 +182,7 @@ export default function CheckoutPage() {
             contact: formData.phone,
           },
           theme: {
-            color: '#1A2F23',
+            color: '#5A111C',
           },
           handler: async (response: any) => {
             try {

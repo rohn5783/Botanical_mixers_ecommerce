@@ -11,16 +11,21 @@
 
 ### Primary Palette (Base & Structural)
 ```scss
-$color-bg-primary: #FAF7F2;       // Warm linen ivory (Main background)
-$color-bg-secondary: #F3EFE6;     // Muted parchment cream (Sections & sub-panels)
+$color-bg-primary: #FAF6F5;       // Warm linen ivory (Main background)
+$color-bg-secondary: #F3ECE9;     // Muted parchment cream (Sections & sub-panels)
 $color-bg-surface: #FFFFFF;       // Pure card surface
 $color-bg-surface-elevated: #FFFFFF;
-$color-bg-dark: #14241B;          // Deep forest canopy (Hero/Footer/B2B accent)
-$color-bg-dark-surface: #1C3326;  // Deep botanical card surface
+$color-bg-dark: #1D0A0F;          // Deep imperial midnight maroon (Hero/Footer/B2B accent)
+$color-bg-dark-surface: #2A0F17;  // Deep botanical card surface
 
-$color-forest-primary: #1A2F23;   // Core brand green
-$color-forest-light: #2B4737;     // Secondary botanical green
-$color-forest-dark: #0E1A13;      // Deepest midnight green
+$color-maroon-primary: #5A111C;   // Core brand imperial maroon
+$color-maroon-light: #741825;     // Secondary velvet maroon
+$color-maroon-dark: #3D0911;      // Deepest black-cherry maroon
+
+// Legacy aliases mapping to Maroon for backward compatibility
+$color-forest-primary: $color-maroon-primary;
+$color-forest-light: $color-maroon-light;
+$color-forest-dark: $color-maroon-dark;
 
 $color-gold-primary: #C8974E;     // Warm antique brass / gold
 $color-gold-light: #DFC08A;       // Highlight gold
@@ -52,15 +57,15 @@ $color-hibiscus-dark: #771D32;
 
 ### Neutral & Typography Tokens
 ```scss
-$color-text-primary: #19211D;     // Charcoal pine (High contrast reading)
-$color-text-secondary: #515C56;   // Muted slate botanical
-$color-text-tertiary: #7F8B85;    // Subtle captions & labels
-$color-text-light: #FAF7F2;       // Ivory text on dark surfaces
-$color-text-muted-light: #A5B5AC;// Muted text on dark surfaces
+$color-text-primary: #211518;     // Deep charcoal burgundy (High contrast reading)
+$color-text-secondary: #57474B;   // Muted wine slate
+$color-text-tertiary: #887579;    // Subtle captions & labels
+$color-text-light: #FAF6F5;       // Ivory text on dark surfaces
+$color-text-muted-light: #D8B6BD;// Muted rose-linen on dark surfaces
 
-$color-border-subtle: #E8E2D8;    // Warm hairline divider
-$color-border-medium: #D1C8BA;    // Input & card border
-$color-border-dark: #2B4234;      // Divider on dark panels
+$color-border-subtle: #EAE1DF;    // Warm hairline divider
+$color-border-medium: #D5C6C6;    // Input & card border
+$color-border-dark: #441724;      // Divider on dark panels
 
 $color-success: #2E6F40;
 $color-warning: #B87A1E;

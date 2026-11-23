@@ -119,7 +119,7 @@ export class PaymentService {
       to: order.customerEmail,
       subject: `Order Confirmed: ${order.orderNumber} — Aranya Botanicals`,
       html: `
-        <div style="font-family: serif; color: #1A2F23; padding: 24px;">
+        <div style="font-family: serif; color: #5A111C; padding: 24px;">
           <h2>Thank You for Ordering with Aranya Botanicals</h2>
           <p>Your order <strong>${order.orderNumber}</strong> has been confirmed and is being prepared for dispatch.</p>
           <p>Total Paid: ₹${(order.totalAmountInPaise / 100).toFixed(2)}</p>

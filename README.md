@@ -54,8 +54,8 @@ The platform serves two primary commercial tiers:
 ## 3. Researched Design System
 
 The visual identity is based on in-depth research of leading premium beverage brands (**SWA Drinks**, **MONIN India**, **Twisted Tails**, **Sepoy & Co.**, and **ROOTARI**):
-* **Linen Canvas (`#FAF7F2`):** Warm, organic paper texture.
-* **Deep Forest Canopy (`#1A2F23` & `#122118`):** Botanical authority and grounding luxury.
+* **Linen Canvas (`#FAF6F5`):** Warm, organic paper texture.
+* **Deep Imperial Maroon (`#5A111C` & `#1D0A0F`):** Royal botanical authority and grounding luxury.
 * **Antique Brass (`#C8974E`):** Warm artisan foil accents.
 * **Botanical Terroir Pigments:**
   - Kokum Crimson: `#932938`
