@@ -4,7 +4,7 @@ import { env } from './config/env.js';
 import { seedDatabaseIfEmpty } from './utils/seedDatabase.js';
 import path from 'path';
 import fs from 'fs';
-import next from 'next';
+import express from 'express';
 
 const PORT = env.PORT || 5000;
 
@@ -16,31 +16,28 @@ const startServer = async () => {
     // Auto seed database if empty so dev/demo has rich realistic data immediately
     await seedDatabaseIfEmpty();
 
-    // Integrate Next.js frontend if available
-    const possibleFrontendDirs = [
-      path.resolve(process.cwd(), '../frontend'),
-      path.resolve(process.cwd(), 'frontend'),
+    // Serve static frontend build if present
+    const possibleStaticDirs = [
+      path.resolve(process.cwd(), '../frontend/out'),
+      path.resolve(process.cwd(), 'frontend/out'),
+      path.resolve(process.cwd(), '../frontend/public'),
+      path.resolve(process.cwd(), 'public'),
     ];
-    const frontendDir = possibleFrontendDirs.find(
-      (d) => fs.existsSync(d) && fs.existsSync(path.join(d, 'package.json'))
-    );
+    const staticDir = possibleStaticDirs.find((d) => fs.existsSync(d));
 
-    if (frontendDir) {
-      console.log(`[Frontend] Initializing Next.js from: ${frontendDir}`);
-      const isDev = env.NODE_ENV === 'development' && !fs.existsSync(path.join(frontendDir, '.next'));
-      const nextApp = (next as any)({ dev: isDev, dir: frontendDir });
-      await nextApp.prepare();
-      const nextHandler = nextApp.getRequestHandler();
-
-      app.all('*', (req, res) => nextHandler(req, res));
-      console.log('✨ [Frontend] Next.js integrated into unified Express server.');
-    } else {
-      console.log('[Frontend] Frontend directory not detected. Running API standalone.');
+    if (staticDir) {
+      console.log(`[Frontend] Serving static web assets from: ${staticDir}`);
+      app.use(express.static(staticDir));
+      app.get('*', (req, res, next) => {
+        if (req.path.startsWith('/api') || req.path.startsWith('/health')) {
+          return next();
+        }
+        res.sendFile(path.join(staticDir, 'index.html'));
+      });
     }
 
     const server = app.listen(PORT, () => {
       console.log(`🌿 Aranya Botanicals running on port ${PORT} [${env.NODE_ENV}]`);
-      console.log(`   Unified Store & Web UI: http://localhost:${PORT}`);
       console.log(`   API Base URL: http://localhost:${PORT}/api/v1`);
       console.log(`   Healthcheck: http://localhost:${PORT}/health`);
     });
