@@ -15,7 +15,11 @@ const fallbackProducts: IProduct[] = [
     shortDescription: 'Unsweetened pure botanical concentrate pressed from sun-cured Western Ghats Garcinia indica.',
     description: 'Crafted from hand-harvested wild Kokum rinds from the Western Ghats.',
     category: { _id: 'cat_1', name: 'Kokum Concentrates', slug: 'kokum' },
-    images: ['https://images.unsplash.com/photo-1546171753-97d7676e4602?auto=format&fit=crop&w=800&q=80'],
+    images: [
+      '/images/products/kokum-bottle-main.jpg',
+      '/images/products/kokum-serve-glass.jpg',
+      '/images/products/kokum-harvest.jpg',
+    ],
     variants: [
       { name: '500ml Heritage Glass Bottle', sku: 'AB-KOKUM-500', volumeMl: 500, priceInPaise: 74900, stock: 200 },
       { name: '250ml Tasting Bottle', sku: 'AB-KOKUM-250', volumeMl: 250, priceInPaise: 44900, stock: 150 },
@@ -43,7 +47,11 @@ const fallbackProducts: IProduct[] = [
     shortDescription: 'Slow-simmered aromatic Indian Sarsaparilla roots with wild honey undertones and deep herbal cooling.',
     description: 'Decocted over 14 hours in micro-batches with whole aromatic roots.',
     category: { _id: 'cat_2', name: 'Nannari Concentrates', slug: 'nannari' },
-    images: ['https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80'],
+    images: [
+      '/images/products/nannari-bottle-main.jpg',
+      '/images/products/nannari-serve-glass.jpg',
+      '/images/products/nannari-roots.jpg',
+    ],
     variants: [
       { name: '500ml Heritage Glass Bottle', sku: 'AB-NANNARI-500', volumeMl: 500, priceInPaise: 74900, stock: 195 },
       { name: '250ml Tasting Bottle', sku: 'AB-NANNARI-250', volumeMl: 250, priceInPaise: 44900, stock: 140 },
@@ -71,7 +79,11 @@ const fallbackProducts: IProduct[] = [
     shortDescription: 'Pure cold-reduced dark black plum with natural tannins, wild pink peppercorn, and tangy kala khatta essence.',
     description: 'Extracted from ripe, deep-purple Indian wild black plums.',
     category: { _id: 'cat_3', name: 'Jamun Concentrates', slug: 'jamun' },
-    images: ['https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80'],
+    images: [
+      '/images/products/jamun-bottle-main.jpg',
+      '/images/products/jamun-serve-glass.jpg',
+      '/images/products/jamun-fruits.jpg',
+    ],
     variants: [
       { name: '500ml Heritage Glass Bottle', sku: 'AB-JAMUN-500', volumeMl: 500, priceInPaise: 79900, stock: 180 },
     ],
@@ -98,7 +110,11 @@ const fallbackProducts: IProduct[] = [
     shortDescription: 'Luminescent ruby elixir crafted from coastal roselle blossoms with crisp tartness and fresh ginger peel.',
     description: 'Organic crimson hibiscus calyces cold-extracted with crushed cardamom.',
     category: { _id: 'cat_4', name: 'Hibiscus Concentrates', slug: 'hibiscus' },
-    images: ['https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=800&q=80'],
+    images: [
+      '/images/products/hibiscus-bottle-main.jpg',
+      '/images/products/hibiscus-serve-glass.jpg',
+      '/images/products/hibiscus-flower.jpg',
+    ],
     variants: [
       { name: '500ml Heritage Glass Bottle', sku: 'AB-HIBISCUS-500', volumeMl: 500, priceInPaise: 74900, stock: 210 },
     ],
@@ -127,7 +143,7 @@ const fallbackRecipes: IRecipe[] = [
     slug: 'malabar-kokum-sparkling-highball',
     subtitle: 'A revitalizing effervescent aperitif with crushed mint and pink rock salt',
     description: 'The definitive summer refresher.',
-    heroImage: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80',
+    heroImage: '/images/recipes/recipe-kokum-highball.jpg',
     category: 'SPARKLING',
     difficulty: 'EASY',
     prepTimeMinutes: 3,
@@ -149,7 +165,7 @@ const fallbackRecipes: IRecipe[] = [
     slug: 'heritage-nannari-sarsaparilla-cold-brew',
     subtitle: 'Slow-steeped Southern Indian roots meet cold-extracted single origin Arabica',
     description: 'Specialty coffeehouse creation bridging herbal cooling roots with cold brew.',
-    heroImage: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=800&q=80',
+    heroImage: '/images/recipes/recipe-nannari-coldbrew.jpg',
     category: 'SIGNATURE',
     difficulty: 'MEDIUM',
     prepTimeMinutes: 4,
@@ -241,7 +257,7 @@ export default async function HomePage() {
           <div className={styles.heroVisual}>
             <div className={styles.heroImageFrame}>
               <img
-                src="https://images.unsplash.com/photo-1546171753-97d7676e4602?auto=format&fit=crop&w=1000&q=80"
+                src="/images/hero-bottle.jpg"
                 alt="Aranya Botanicals Glassware Serve"
                 className={styles.heroMainImg}
               />
@@ -273,7 +289,7 @@ export default async function HomePage() {
             <Link href="/botanicals/kokum" className={styles.pillarCard}>
               <div className={styles.pillarBadge} style={{ backgroundColor: '#932938' }}>01</div>
               <div className={styles.pillarImgWrapper}>
-                <img src="https://images.unsplash.com/photo-1546171753-97d7676e4602?auto=format&fit=crop&w=600&q=80" alt="Kokum" />
+                <img src="/images/botanicals/kokum-detail.jpg" alt="Kokum" />
               </div>
               <h3>Kokum</h3>
               <span className={styles.botanicalSci}>Garcinia indica</span>
@@ -285,7 +301,7 @@ export default async function HomePage() {
             <Link href="/botanicals/nannari" className={styles.pillarCard}>
               <div className={styles.pillarBadge} style={{ backgroundColor: '#7A5435' }}>02</div>
               <div className={styles.pillarImgWrapper}>
-                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80" alt="Nannari" />
+                <img src="/images/botanicals/nannari-detail.jpg" alt="Nannari" />
               </div>
               <h3>Nannari Root</h3>
               <span className={styles.botanicalSci}>Hemidesmus indicus</span>
@@ -297,7 +313,7 @@ export default async function HomePage() {
             <Link href="/botanicals/jamun" className={styles.pillarCard}>
               <div className={styles.pillarBadge} style={{ backgroundColor: '#4E1D3B' }}>03</div>
               <div className={styles.pillarImgWrapper}>
-                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" alt="Jamun" />
+                <img src="/images/botanicals/jamun-detail.jpg" alt="Jamun" />
               </div>
               <h3>Konkan Jamun</h3>
               <span className={styles.botanicalSci}>Syzygium cumini</span>
@@ -309,7 +325,7 @@ export default async function HomePage() {
             <Link href="/botanicals/hibiscus" className={styles.pillarCard}>
               <div className={styles.pillarBadge} style={{ backgroundColor: '#A62B47' }}>04</div>
               <div className={styles.pillarImgWrapper}>
-                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=600&q=80" alt="Hibiscus" />
+                <img src="/images/botanicals/hibiscus-detail.jpg" alt="Hibiscus" />
               </div>
               <h3>Wild Hibiscus</h3>
               <span className={styles.botanicalSci}>Hibiscus sabdariffa</span>

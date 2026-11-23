@@ -21,7 +21,7 @@ export default function CollectionsPage() {
       price: 1699,
       comparePrice: 1999,
       servings: '~32 Servings',
-      image: 'https://images.unsplash.com/photo-1546171753-97d7676e4602?auto=format&fit=crop&w=800&q=80',
+      image: '/images/products/discovery-box-main.jpg',
       badge: 'Bestselling Gift Box',
       includes: [
         '1x Wild Kokum Concentrate (250ml)',
@@ -41,7 +41,7 @@ export default function CollectionsPage() {
       price: 1999,
       comparePrice: 2249,
       servings: '~48 Servings',
-      image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80',
+      image: '/images/products/nannari-bottle-main.jpg',
       badge: 'Heritage Reserve',
       includes: [
         '2x Heritage Nannari Root (500ml)',
@@ -59,7 +59,7 @@ export default function CollectionsPage() {
       price: 3499,
       comparePrice: 3899,
       servings: '~100 Servings',
-      image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=800&q=80',
+      image: '/images/products/barista-trio-main.jpg',
       badge: 'Commercial Grade',
       includes: [
         '1x Wild Kokum (1000ml)',
@@ -78,7 +78,7 @@ export default function CollectionsPage() {
       price: 1399,
       comparePrice: 1599,
       servings: '~32 Servings',
-      image: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=800&q=80',
+      image: '/images/products/hibiscus-bottle-main.jpg',
       badge: 'Summer Essential',
       includes: [
         '1x Malabar Wild Hibiscus (500ml)',
