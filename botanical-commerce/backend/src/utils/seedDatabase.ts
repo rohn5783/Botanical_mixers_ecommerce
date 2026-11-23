@@ -20,10 +20,9 @@ export const seedDatabaseIfEmpty = async (): Promise<void> => {
   await runSeed();
 };
 
-export const runSeed = async (): Promise<void> => {
-  // Clear existing data
-  await Promise.all([
-    User.deleteMany({}),
+export const runSeed = async (clearUsers = false): Promise<void> => {
+  // Clear existing catalog and inventory data
+  const clearOperations: Promise<any>[] = [
     Category.deleteMany({}),
     BotanicalIngredient.deleteMany({}),
     Product.deleteMany({}),
@@ -31,45 +30,69 @@ export const runSeed = async (): Promise<void> => {
     Inventory.deleteMany({}),
     Coupon.deleteMany({}),
     B2BEnquiry.deleteMany({}),
-  ]);
+  ];
 
-  console.log('[Seed] Cleared existing collections.');
+  if (clearUsers) {
+    clearOperations.push(User.deleteMany({}));
+  }
 
-  // 1. Create Users
+  await Promise.all(clearOperations);
+
+  console.log('[Seed] Cleared catalog collections.');
+
+  // 1. Create or ensure default demo users (Admin, Customer, B2B)
   const adminPassword = await hashPassword('Botanicals@Admin2026');
   const customerPassword = await hashPassword('Customer@2026');
   const b2bPassword = await hashPassword('B2BPartner@2026');
 
-  const admin = await User.create({
-    name: 'Devendra Sharma',
-    email: 'admin@aranyabotanicals.com',
-    passwordHash: adminPassword,
-    role: UserRole.ADMIN,
-    phone: '+919820012345',
-    isEmailVerified: true,
-  });
+  await User.findOneAndUpdate(
+    { email: 'admin@aranyabotanicals.com' },
+    {
+      $set: {
+        name: 'Devendra Sharma',
+        email: 'admin@aranyabotanicals.com',
+        passwordHash: adminPassword,
+        role: UserRole.ADMIN,
+        phone: '+919820012345',
+        isEmailVerified: true,
+      },
+    },
+    { upsert: true, new: true }
+  );
 
-  const customer = await User.create({
-    name: 'Ananya Deshmukh',
-    email: 'customer@aranyabotanicals.com',
-    passwordHash: customerPassword,
-    role: UserRole.CUSTOMER,
-    phone: '+919811122233',
-    isEmailVerified: true,
-  });
+  await User.findOneAndUpdate(
+    { email: 'customer@aranyabotanicals.com' },
+    {
+      $set: {
+        name: 'Ananya Deshmukh',
+        email: 'customer@aranyabotanicals.com',
+        passwordHash: customerPassword,
+        role: UserRole.CUSTOMER,
+        phone: '+919811122233',
+        isEmailVerified: true,
+      },
+    },
+    { upsert: true, new: true }
+  );
 
-  const b2bUser = await User.create({
-    name: 'Vikram Mehta',
-    email: 'partner@tajhotels.com',
-    passwordHash: b2bPassword,
-    role: UserRole.B2B_CUSTOMER,
-    companyName: 'Taj Connoisseur Beverages & Hospitality',
-    gstin: '27AABCT3518Q1ZV',
-    phone: '+919822233344',
-    isEmailVerified: true,
-  });
+  await User.findOneAndUpdate(
+    { email: 'partner@tajhotels.com' },
+    {
+      $set: {
+        name: 'Vikram Mehta',
+        email: 'partner@tajhotels.com',
+        passwordHash: b2bPassword,
+        role: UserRole.B2B_CUSTOMER,
+        companyName: 'Taj Connoisseur Beverages & Hospitality',
+        gstin: '27AABCT3518Q1ZV',
+        phone: '+919822233344',
+        isEmailVerified: true,
+      },
+    },
+    { upsert: true, new: true }
+  );
 
-  console.log('[Seed] Created default users (Admin, Customer, B2B).');
+  console.log('[Seed] Default users ensured (Admin, Customer, B2B).');
 
   // 2. Categories
   const categories = await Category.insertMany([

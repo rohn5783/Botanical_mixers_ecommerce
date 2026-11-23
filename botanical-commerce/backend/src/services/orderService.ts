@@ -1,6 +1,7 @@
 import { Order, IOrder, IShippingAddress } from '../models/Order.js';
 import { Product } from '../models/Product.js';
 import { Inventory } from '../models/Inventory.js';
+import { User } from '../models/User.js';
 import { CartService } from './cartService.js';
 import { generateOrderNumber } from '../utils/orderNumber.js';
 import { APP_CONSTANTS } from '../constants/index.js';
@@ -132,7 +133,15 @@ export class OrderService {
   }
 
   static async getUserOrders(userId: string) {
-    return Order.find({ user: userId }).sort({ createdAt: -1 }).lean();
+    const user = await User.findById(userId);
+    if (!user) {
+      return Order.find({ user: userId }).sort({ createdAt: -1 }).lean();
+    }
+    return Order.find({
+      $or: [{ user: userId }, { customerEmail: user.email.toLowerCase() }],
+    })
+      .sort({ createdAt: -1 })
+      .lean();
   }
 
   static async cancelOrder(orderId: string, userId?: string, reason?: string) {

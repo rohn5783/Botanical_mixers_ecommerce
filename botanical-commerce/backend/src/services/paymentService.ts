@@ -1,6 +1,8 @@
 import { Payment, IPayment } from '../models/Payment.js';
 import { Order } from '../models/Order.js';
 import { Inventory } from '../models/Inventory.js';
+import { env } from '../config/env.js';
+import { AppError } from '../utils/errors.js';
 import {
   createRazorpayOrder,
   verifyRazorpayPaymentSignature,
@@ -12,11 +14,11 @@ export class PaymentService {
   static async createPaymentSession(orderId: string) {
     const order = await Order.findById(orderId);
     if (!order) {
-      throw new Error('Order not found.');
+      throw new AppError('Order not found.', 404);
     }
 
     if (order.paymentStatus === PaymentStatus.PAID) {
-      throw new Error('Order has already been paid.');
+      throw new AppError('Order has already been paid.', 400);
     }
 
     const rzpOrder = await createRazorpayOrder({
@@ -46,6 +48,7 @@ export class PaymentService {
       amountInPaise: order.totalAmountInPaise,
       currency: 'INR',
       orderNumber: order.orderNumber,
+      keyId: env.RAZORPAY_KEY_ID,
     };
   }
 
@@ -57,7 +60,15 @@ export class PaymentService {
   }) {
     const order = await Order.findById(data.orderId);
     if (!order) {
-      throw new Error('Order not found.');
+      throw new AppError('Order not found.', 404);
+    }
+
+    if (order.paymentStatus === PaymentStatus.PAID) {
+      return {
+        success: true,
+        orderNumber: order.orderNumber,
+        status: order.status,
+      };
     }
 
     const isValid = verifyRazorpayPaymentSignature(
@@ -78,7 +89,7 @@ export class PaymentService {
       );
       order.paymentStatus = PaymentStatus.FAILED;
       await order.save();
-      throw new Error('Payment verification failed. Invalid gateway signature.');
+      throw new AppError('Payment verification failed. Invalid gateway signature.', 400);
     }
 
     // Payment is valid! Update payment record

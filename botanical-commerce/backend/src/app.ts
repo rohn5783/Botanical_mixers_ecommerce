@@ -16,10 +16,14 @@ app.use(
   })
 );
 
-// CORS configuration
+// CORS configuration - Allow same-origin and all incoming origins cleanly for unified deployment
 app.use(
   cors({
-    origin: [env.FRONTEND_URL, 'http://localhost:3000', 'http://127.0.0.1:3000'],
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like same-origin browser fetches, mobile apps, curl)
+      if (!origin) return callback(null, true);
+      return callback(null, true);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'x-guest-token'],
@@ -48,8 +52,8 @@ app.get('/health', (req: Request, res: Response) => {
 // Primary API Router
 app.use('/api/v1', routes);
 
-// 404 Handler
-app.use((req: Request, res: Response) => {
+// 404 Handler for undefined API routes
+app.use('/api/*', (req: Request, res: Response) => {
   res.status(404).json({
     success: false,
     message: `API Route ${req.method} ${req.originalUrl} not found.`,

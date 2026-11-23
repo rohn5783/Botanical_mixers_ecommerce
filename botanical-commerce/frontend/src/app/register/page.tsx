@@ -27,15 +27,16 @@ export default function RegisterPage() {
     setErrorMsg('');
 
     try {
+      const cleanPhone = phone ? phone.replace(/\D/g, '').slice(-10) : undefined;
       const res = await fetchApi('/auth/register', {
         method: 'POST',
         body: JSON.stringify({
-          name,
-          email,
-          phone,
+          name: name.trim(),
+          email: email.trim().toLowerCase(),
+          phone: cleanPhone || phone.trim(),
           password,
           role,
-          companyName: role === 'B2B_CUSTOMER' ? companyName : undefined,
+          companyName: role === 'B2B_CUSTOMER' ? companyName.trim() : undefined,
         }),
       });
 

@@ -24,6 +24,20 @@ declare global {
   }
 }
 
+const loadRazorpayScript = (): Promise<boolean> => {
+  return new Promise((resolve) => {
+    if (typeof window !== 'undefined' && window.Razorpay) {
+      return resolve(true);
+    }
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+};
+
 export default function CheckoutPage() {
   const router = useRouter();
   const { cart, guestToken, clearCart } = useCartStore();
@@ -165,70 +179,69 @@ export default function CheckoutPage() {
 
       const paymentData = paymentRes.data;
 
-      // 3. Initiate Razorpay Checkout Modal (or handle test mode)
-      const rzpKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || 'rzp_test_aranyaBotanicalsKey123';
-
-      if (typeof window !== 'undefined' && window.Razorpay) {
-        const options = {
-          key: rzpKey,
-          amount: paymentData.amountInPaise,
-          currency: paymentData.currency || 'INR',
-          name: 'Aranya Botanicals',
-          description: `Order ${order.orderNumber} - Artisanal Botanical Concentrates`,
-          order_id: paymentData.razorpayOrderId,
-          prefill: {
-            name: formData.fullName,
-            email: formData.email,
-            contact: formData.phone,
-          },
-          theme: {
-            color: '#5A111C',
-          },
-          handler: async (response: any) => {
-            try {
-              // 4. Server-Side Signature Verification
-              const verifyRes = await fetchApi('/payments/verify', {
-                method: 'POST',
-                body: JSON.stringify({
-                  orderId: order._id,
-                  razorpayOrderId: response.razorpay_order_id,
-                  razorpayPaymentId: response.razorpay_payment_id,
-                  razorpaySignature: response.razorpay_signature,
-                }),
-              });
-
-              if (verifyRes.success) {
-                clearCart();
-                setConfirmedOrder(order);
-              }
-            } catch (vErr: any) {
-              setErrorMessage(vErr.message || 'Payment signature verification failed.');
-            }
-          },
-          modal: {
-            ondismiss: () => {
-              setIsProcessing(false);
-            },
-          },
-        };
-
-        const rzp = new window.Razorpay(options);
-        rzp.open();
-      } else {
-        // Fallback simulated payment verification for automated testing / sandbox
-        const verifyRes = await fetchApi('/payments/verify', {
-          method: 'POST',
-          body: JSON.stringify({
-            orderId: order._id,
-            razorpayOrderId: paymentData.razorpayOrderId,
-            razorpayPaymentId: `pay_mock_${Date.now()}`,
-            razorpaySignature: 'mock_signature_verified',
-          }),
-        });
-
-        clearCart();
-        setConfirmedOrder(order);
+      // 3. Ensure Razorpay Checkout SDK is loaded
+      const isScriptLoaded = await loadRazorpayScript();
+      if (!isScriptLoaded || typeof window === 'undefined' || !window.Razorpay) {
+        throw new Error('Razorpay Checkout SDK could not be loaded. Please verify your internet connection.');
       }
+
+      const rzpKey = paymentData.keyId || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
+      if (!rzpKey) {
+        throw new Error('Razorpay Key ID is missing. Please check your configuration.');
+      }
+
+      const options = {
+        key: rzpKey,
+        amount: paymentData.amountInPaise,
+        currency: paymentData.currency || 'INR',
+        name: 'Aranya Botanicals',
+        description: `Order ${order.orderNumber} - Artisanal Botanical Concentrates`,
+        order_id: paymentData.razorpayOrderId,
+        prefill: {
+          name: formData.fullName,
+          email: formData.email,
+          contact: formData.phone,
+        },
+        theme: {
+          color: '#5A111C',
+        },
+        handler: async (response: any) => {
+          try {
+            setIsProcessing(true);
+            // 4. Server-Side Signature Verification
+            const verifyRes = await fetchApi('/payments/verify', {
+              method: 'POST',
+              body: JSON.stringify({
+                orderId: order._id,
+                razorpayOrderId: response.razorpay_order_id,
+                razorpayPaymentId: response.razorpay_payment_id,
+                razorpaySignature: response.razorpay_signature,
+              }),
+            });
+
+            if (verifyRes.success) {
+              clearCart();
+              setConfirmedOrder(order);
+            }
+          } catch (vErr: any) {
+            setErrorMessage(vErr.message || 'Payment signature verification failed.');
+          } finally {
+            setIsProcessing(false);
+          }
+        },
+        modal: {
+          ondismiss: () => {
+            setIsProcessing(false);
+          },
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.on('payment.failed', function (resp: any) {
+        setIsProcessing(false);
+        setErrorMessage(resp.error?.description || 'Payment was unsuccessful or cancelled.');
+      });
+      rzp.open();
     } catch (err: any) {
       console.error(err);
       setErrorMessage(err.message || 'An error occurred during checkout processing.');
@@ -239,7 +252,7 @@ export default function CheckoutPage() {
 
   return (
     <div className={styles.checkoutPage}>
-      <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" />
+      <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="afterInteractive" />
 
       <div className={styles.container}>
         <div className={styles.header}>

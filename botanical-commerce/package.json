@@ -1,0 +1,16 @@
+{
+  "name": "botanical-commerce",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Aranya Botanicals - Artisanal Indian Botanical Beverage Concentrates Commerce Platform",
+  "scripts": {
+    "build:frontend": "pnpm --dir frontend run build",
+    "build:backend": "pnpm --dir backend run build",
+    "build": "pnpm build:frontend && pnpm build:backend",
+    "start": "pnpm --dir backend start",
+    "dev:backend": "pnpm --dir backend dev",
+    "dev:frontend": "pnpm --dir frontend dev",
+    "dev": "pnpm --dir backend dev",
+    "seed": "pnpm --dir backend run seed"
+  }
+}
