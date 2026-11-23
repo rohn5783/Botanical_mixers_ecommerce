@@ -8,7 +8,7 @@ const nextConfig = {
     includePaths: ['./src/styles'],
   },
   async rewrites() {
-    const backendUrl = process.env.BACKEND_URL || 'http://localhost:5000';
+    const backendUrl = process.env.BACKEND_URL || 'https://botanical-mixers-ecommerce.onrender.com';
     return [
       {
         source: '/api/v1/:path*',

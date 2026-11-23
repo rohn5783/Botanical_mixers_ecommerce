@@ -2,11 +2,11 @@ const getApiBaseUrl = (): string => {
   if (process.env.NEXT_PUBLIC_API_URL) {
     return process.env.NEXT_PUBLIC_API_URL;
   }
-  // In the browser, use relative path so requests automatically route to the same origin and port
+  // In the browser, use relative path so requests automatically route to the same origin and proxy cleanly
   if (typeof window !== 'undefined') {
     return '/api/v1';
   }
-  return 'http://localhost:5000/api/v1';
+  return 'https://botanical-mixers-ecommerce.onrender.com/api/v1';
 };
 
 const API_BASE_URL = getApiBaseUrl();
